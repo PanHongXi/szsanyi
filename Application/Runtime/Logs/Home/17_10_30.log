@@ -1,0 +1,86 @@
+[ 2017-10-30T16:14:33+08:00 ] 127.0.0.1 /sucai/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000605s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000769s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000861s ]
+SQL: SHOW COLUMNS FROM `sc_cate` [ RunTime:0.0568s ]
+SQL: SELECT * FROM `sc_cate` WHERE `cate_parentid` = 0 ORDER BY cate_sort asc  [ RunTime:0.0211s ]
+SQL: SELECT `cate_id`,`cate_parentid` FROM `sc_cate` WHERE `cate_id` = 0 LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.024829s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.024951s ]
+NOTIC: [8] Undefined index: user_id D:\wamp64\www\sucai\Application\Runtime\Cache\Home\5f5878b563bbd0551b6c84d71156b7e9.php 第 29 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.088795s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.088887s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.006554s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.006649s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.010741s ]
+INFO: [ app_end ] --END-- [ RunTime:0.010843s ]
+
+[ 2017-10-30T16:14:34+08:00 ] 127.0.0.1 /sucai/index.php/Home/Lst/index/cate_id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000470s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000547s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000638s ]
+SQL: SHOW COLUMNS FROM `sc_cate` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `sc_cate` WHERE `cate_parentid` = 0 ORDER BY cate_sort asc  [ RunTime:0.0003s ]
+SQL: SELECT `cate_id`,`cate_parentid` FROM `sc_cate` WHERE `cate_id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `sc_article` [ RunTime:0.0179s ]
+SQL: SELECT `cate_name` FROM `sc_cate` WHERE `cate_id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sc_article` WHERE `cate_id` = 1 LIMIT 1   [ RunTime:0.0418s ]
+SQL: SELECT * FROM `sc_article` WHERE `cate_id` = 1 ORDER BY article_time desc LIMIT 0,2   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000278s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000371s ]
+NOTIC: [8] Undefined index: user_id D:\wamp64\www\sucai\Application\Runtime\Cache\Home\cb81eedfa59617cee80c720e6614fcd4.php 第 28 行.
+NOTIC: [8] Undefined variable: curr D:\wamp64\www\sucai\Application\Runtime\Cache\Home\cb81eedfa59617cee80c720e6614fcd4.php 第 146 行.
+NOTIC: [8] Undefined index:  download D:\wamp64\www\sucai\Application\Runtime\Cache\Home\cb81eedfa59617cee80c720e6614fcd4.php 第 334 行.
+NOTIC: [8] Undefined index:  download D:\wamp64\www\sucai\Application\Runtime\Cache\Home\cb81eedfa59617cee80c720e6614fcd4.php 第 334 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.033538s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033696s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000544s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000698s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001170s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001346s ]
+
+[ 2017-10-30T16:14:58+08:00 ] 127.0.0.1 /sucai/index.php/Home/Lst/index/cate_id/1/p/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000523s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000826s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000962s ]
+SQL: SHOW COLUMNS FROM `sc_cate` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `sc_cate` WHERE `cate_parentid` = 0 ORDER BY cate_sort asc  [ RunTime:0.0004s ]
+SQL: SELECT `cate_id`,`cate_parentid` FROM `sc_cate` WHERE `cate_id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `sc_article` [ RunTime:0.0008s ]
+SQL: SELECT `cate_name` FROM `sc_cate` WHERE `cate_id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sc_article` WHERE `cate_id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `sc_article` WHERE `cate_id` = 1 ORDER BY article_time desc LIMIT 2,2   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000288s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000385s ]
+NOTIC: [8] Undefined index: user_id D:\wamp64\www\sucai\Application\Runtime\Cache\Home\cb81eedfa59617cee80c720e6614fcd4.php 第 28 行.
+NOTIC: [8] Undefined variable: curr D:\wamp64\www\sucai\Application\Runtime\Cache\Home\cb81eedfa59617cee80c720e6614fcd4.php 第 146 行.
+NOTIC: [8] Undefined index:  download D:\wamp64\www\sucai\Application\Runtime\Cache\Home\cb81eedfa59617cee80c720e6614fcd4.php 第 334 行.
+NOTIC: [8] Undefined index:  download D:\wamp64\www\sucai\Application\Runtime\Cache\Home\cb81eedfa59617cee80c720e6614fcd4.php 第 334 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015372s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015458s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000416s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000508s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000789s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000889s ]
+

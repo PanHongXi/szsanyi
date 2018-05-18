@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理系统</title>
+    <meta name="author" content="DeathGhost"/>
+    <link rel="stylesheet" type="text/css" href="__Css__/style.css">
+    <!--[if lt IE 9]>
+    <script src="__Js__/html5.js"></script>
+    <![endif]-->
+    <script src="__Js__/jquery.js"></script>
+    <script src="__Js__/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+
+        (function ($) {
+            $(window).load(function () {
+
+                $("a[rel='load-content']").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr("href");
+                    $.get(url, function (data) {
+                        $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                        //scroll-to appended content
+                        $(".content").mCustomScrollbar("scrollTo", "h2:last");
+                    });
+                });
+
+                $(".content").delegate("a[href='top']", "click", function (e) {
+                    e.preventDefault();
+                    $(".content").mCustomScrollbar("scrollTo", $(this).attr("href"));
+                });
+
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+<!--header-->
+<include file="Common/head"/>
+<!--aside nav-->
+<!--aside nav-->
+<include file="Common/left"/>
+
+<section class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">添加文章</h2>
+            <a class="fr top_rt_btn" href="__MODULE__/Article/article_list">返回文章列表</a>
+        </div>
+        <form method="post" action="" enctype="multipart/form-data">
+            <input type="hidden" name="article_id" value="{$articles['article_id']}"/>
+            <section>
+                <ul class="ulColumn2">
+                    <li>
+                        <span class="item_name" style="width:120px;">文章标题：</span>
+                        <input value="{$articles['article_title']}" type="text" name="article_title" class="textbox textbox_295" placeholder="文章标题..."/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章作者：</span>
+                        <input value="{$articles['article_author']}" type="text" name="article_author" class="textbox textbox_295"  placeholder="文章作者..."/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章关键字：</span>
+                        <input value="{$articles['article_keys']}" type="text" name="article_keys" class="textbox textbox_295"  placeholder="文章关键字.多个用半角’,‘分割"/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章描述：</span>
+                        <textarea name="article_desc" class="textbox textbox_295" style="width: 500px;height: 200px;" placeholder="文章描述">{$articles['article_desc']}</textarea>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章类别：</span>
+                        <select class="select" name="cate_id">
+                            <volist name="list" id="vo">
+                                <option <if condition="$vo['cate_id'] eq $cate['cate_id']">style="display:none;"</if>
+                                <if condition="$vo['cate_id'] eq $cate['cate_parentid']">selected="selected"</if>
+                                value="{$vo['cate_id']}"><?php echo str_repeat("- ",$vo["level"]*3);?>
+                                {$vo['cate_name']}
+                                </option>
+                            </volist>
+                        </select>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章类型：</span>
+                        <label class="single_selection"><input type="radio" value="0" <if condition="$articles['article_reco'] eq 0" >checked="checked"</if>  name="article_reco"/>不推荐</label>
+                        <label class="single_selection"><input type="radio" value="1" <if condition="$articles['article_reco'] eq 1" >checked="checked"</if> name="article_reco"/>推荐</label>
+                    </li>
+
+                    <li>
+                        <span class="item_name" style="width:120px;">文章类型：</span>
+                        <if condition="$articles['attrtype_id'] eq 0" >
+                            <select  class="select" name="type_id"  >
+                                <option value="">选择类型</option>
+                                <volist name="typeattr" id="typeattr">
+                                    <option value="{$typeattr['type_id']}" <if condition="$typeattr['type_id'] eq $articles['attrtype_id']" > selected="selected" </if> >{$typeattr['type_name']}</option>
+                                </volist>
+                            </select>
+                            <else/>
+                            {$typeAttrRes['type_name']}
+                            <input type="hidden" name="type_id" value="{$typeAttrRes['type_id']}" />
+                        </if>
+                    </li>
+                    <li id="attr">
+                        <?php foreach($attrsRes as $k => $v):
+                                 $attr_value = explode(',',$v['attr_value']);
+                        ?>
+                            <?php if($article_attrRes): ?>
+                                <?php foreach($article_attrRes[$v['attr_id']] as $k2 => $v2): ?>
+                                     <li>
+                                        <span class='item_name' style='width:120px;'><?php echo $v['attr_name'] ;?>：</span>
+                                        <a href='#' onclick='add(this);'><?php if($k2 == 0){echo '[+]';}else{echo '[-]';} ?></a>
+                                            <select class='select' name='attr_id[<?php echo $v['attr_id'] ;?>][]'>
+                                                     <option value=''>选择属性</option>
+                                                <?php foreach($attr_value as $k1 => $v1):?>
+                                                     <option <?php if($v1 == $v2['attrs_value']){echo 'selected="selected"';} ;?> value="<?php echo $v1 ;?>"><?php echo $v1 ;?></option>
+                                                <?php endforeach ;?>
+                                            </select>
+                                     </li>
+                                 <?php endforeach ;?>
+                            <?php endif ;?>
+                        <?php endforeach ;?>
+                    </li>
+                    <script>
+                        $("select[name=type_id]").change(function () {
+                            var type_id = $(this).val();
+                            var attr = $("#attr");
+                            var html = "";
+                            if (!type_id) {
+                                attr.html("");
+                                return false;
+                            }
+                            $.ajax({
+                                type:"GET",
+                                url:"__CONTROLLER__/ajaxGetAttr/type_id/"+type_id,
+                                dataType:"json",
+                                success:function (data) {
+                                    $(data).each(function (k,v) {
+                                        var arr = v.attr_value.split(",");
+                                        html += " <li><span class='item_name' style='width:120px;'>"+v.attr_name+"：</span>";
+                                        html += "<a href='#' onclick='add(this);'>[+]</a><select class='select' name='attr_id["+v.attr_id+"][]'>";
+                                        html += "  <option value=''>选择属性</option>";
+                                        for (i=0;i<arr.length;i++) {
+                                            html += "<option value='"+arr[i]+"'>"+arr[i]+"</option>";
+                                        }
+                                        html += "</select></li>";
+                                    });
+                                    attr.html(html);
+                                }
+                            });
+                        });
+                        function add(o) {
+                            var li = $(o).parent();
+                            if ($(o).html() == "[+]") {
+                                var  newli = li.clone();
+                                newli.find("a").html("[-]");
+                                li.after(newli);
+                            }else {
+                                li.remove();
+                            }
+                        }
+
+                    </script>
+
+                    <li>
+                        <span class="item_name" style="width:120px;">上传图片：</span>
+                        <label class="uploadImg">
+                            <input type="file" name="article_pic"/>
+                            <span>上传图片</span>
+                        </label>
+                        <label >
+                            <if condition="$articles['article_pic'] neq ''">
+                                <img width="60" height="60" src="__ROOT__/{$articles['article_pic']}"/>
+                                <else/>
+                                暂无缩列图
+                            </if>
+                        </label>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章详情：</span>
+
+                        <div id="btns" style="margin-left:120px;margin-top:8px;">
+                            <textarea id="content" name="article_content">{$articles['article_content']}</textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;"></span>
+                        <input type="submit" value="保存修改" class="link_btn"/>
+                    </li>
+                </ul>
+            </section>
+        </form>
+    </div>
+</section>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="__Js__/ueditor.config.js"></script>
+<script src="__Js__/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('content', {initialFrameWidth: 1500, initialFrameHeight: 400,});
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理系统</title>
+    <meta name="author" content="DeathGhost"/>
+    <link rel="stylesheet" type="text/css" href="__Css__/style.css">
+    <!--[if lt IE 9]>
+    <script src="__Js__/html5.js"></script>
+    <![endif]-->
+    <script src="__Js__/jquery.js"></script>
+    <script src="__Js__/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+
+        (function ($) {
+            $(window).load(function () {
+
+                $("a[rel='load-content']").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr("href");
+                    $.get(url, function (data) {
+                        $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                        //scroll-to appended content
+                        $(".content").mCustomScrollbar("scrollTo", "h2:last");
+                    });
+                });
+
+                $(".content").delegate("a[href='top']", "click", function (e) {
+                    e.preventDefault();
+                    $(".content").mCustomScrollbar("scrollTo", $(this).attr("href"));
+                });
+
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+<!--header-->
+<include file="Common/head"/>
+<!--aside nav-->
+<!--aside nav-->
+<include file="Common/left"/>
+
+<section class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">添加栏目</h2>
+            <a class="fr top_rt_btn" href="__MODULE__/Cate/catelist">返回栏目列表</a>
+        </div>
+        <form method="post" action="" enctype="multipart/form-data">
+            <input type="hidden" name="cate_id" value="{$cate['cate_id']}"/>
+            <section>
+                <ul class="ulColumn2">
+                    <li>
+                        <span class="item_name" style="width:120px;">栏目名称：</span>
+                        <input value="{$cate['cate_name']}" required="required" type="text" name="cate_name"
+                               class="textbox textbox_295"
+                               placeholder="栏目名称..."/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">栏目关键字：</span>
+                        <input value="{$cate['cate_keys']}" required="required" type="text" name="cate_keys"
+                               class="textbox textbox_295"
+                               placeholder="栏目关键字.多个用半角’,‘分割"/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">栏目描述：</span>
+                        <textarea required="required" name="cate_describe" class="textbox textbox_295"
+                                  style="width: 500px;height: 200px;"
+                                  placeholder="栏目描述">{$cate['cate_describe']}</textarea>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">上级栏目：</span>
+                        <select class="select" name="cate_parentid">
+                            <option value="0">顶级栏目</option>
+                            <volist name="cateres" id="vo">
+                                <option <if condition="$vo['cate_id'] eq $cate['cate_id']">style="display:none;"</if>
+                                <if condition="$vo['cate_id'] eq $cate['cate_parentid']">selected="selected"</if>
+                                value="{$vo['cate_id']}"><?php echo str_repeat("- ",$vo["level"]*5);?>
+                                {$vo['cate_name']}
+                                </option>
+                            </volist>
+                        </select>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">栏目类型：</span>
+                        <label class="single_selection"><input type="radio" value="0" name="cate_type"
+                            <if condition="$cate['cate_type'] eq 0"> checked="checked"</if>
+                            />列表栏目</label>
+                        <label class="single_selection"><input type="radio" value="1" name="cate_type"
+                            <if condition="$cate['cate_type'] eq 1"> checked="checked"</if>
+                            />单页栏目</label>
+                        <label class="single_selection"><input type="radio" value="2" name="cate_type"
+                            <if condition="$cate['cate_type'] eq 2"> checked="checked"</if>
+                            />话题</label>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">是否显示：</span>
+                        <label class="single_selection">
+                            <input type="radio" value="1" name="show" <if condition="$cate['show'] eq 1"> checked="checked"</if> />是
+                        </label>
+                        <label class="single_selection">
+                            <input type="radio" value="0" name="show" <if condition="$cate['show'] eq 0"> checked="checked"</if>/>否
+                        </label>
+
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">上传图片：</span>
+                        <label class="uploadImg">
+                            <input type="file" name="cate_pic"/>
+                            <span>上传图片</span>
+                        </label>
+                        <label>
+                            <if condition="$cate['cate_pic'] neq ''">
+                                <img width="60" height="60" src="__ROOT__/{$cate['cate_pic']}"/>
+                                <else/>
+                                暂无缩列图
+                            </if>
+                        </label>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">栏目详情：</span>
+
+                        <div id="btns" style="margin-left:120px;margin-top:8px;">
+                            <textarea required="required" id="content"
+                                      name="cate_content">{$cate['cate_content']}</textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;"></span>
+                        <input type="submit" value="保存修改" class="link_btn"/>
+                    </li>
+                </ul>
+            </section>
+        </form>
+    </div>
+</section>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="__Js__/ueditor.config.js"></script>
+<script src="__Js__/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('content', {initialFrameWidth: 1500, initialFrameHeight: 400,});
+</script>
+</body>
+</html>

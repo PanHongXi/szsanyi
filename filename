@@ -1,0 +1,18 @@
+<?php
+ return array (
+  'DB_TYPE' => 'mysql',
+  'DB_HOST' => 'localhost',
+  'DB_NAME' => 'sucai',
+  'DB_USER' => 'root',
+  'DB_PWD' => '',
+  'DB_PORT' => 3306,
+  'DB_PREFIX' => 'sc_',
+  'SY_TITLE' => '网站标题123',
+  'SY_KEYS' => '网站关键字123',
+  'SY_EMAIL' => '1096728445@qq.com123',
+  'SY_RECORD' => ' 苏ICP备15009298',
+  'SY_COPYRIGHT' => '2010-2015 All Rights Reserved123',
+  'SY_DESC' => '站点描述123',
+  'DB_CHARSET' => 'utf8',
+  'DB_DEBUG' => true,
+); ?>

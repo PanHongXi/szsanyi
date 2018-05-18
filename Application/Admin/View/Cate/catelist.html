@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理系统</title>
+    <meta name="author" content="DeathGhost"/>
+    <link rel="stylesheet" type="text/css" href="__Css__/style.css">
+    <!--[if lt IE 9]>
+    <script src="__Js__/html5.js"></script>
+    <![endif]-->
+    <script src="__Js__/jquery.js"></script>
+    <script src="__Js__/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+
+        (function ($) {
+            $(window).load(function () {
+
+                $("a[rel='load-content']").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr("href");
+                    $.get(url, function (data) {
+                        $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                        //scroll-to appended content
+                        $(".content").mCustomScrollbar("scrollTo", "h2:last");
+                    });
+                });
+
+                $(".content").delegate("a[href='top']", "click", function (e) {
+                    e.preventDefault();
+                    $(".content").mCustomScrollbar("scrollTo", $(this).attr("href"));
+                });
+
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+<!--header-->
+<include file="Common/head"/>
+<!--aside nav-->
+<!--aside nav-->
+<include file="Common/left"/>
+
+<section class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">栏目列表</h2>
+            <a href="__MODULE__/Cate/cateadd" class="fr top_rt_btn add_icon">添加栏目</a>
+        </div>
+        <section class="mtb">
+            <select class="select">
+                <option>下拉菜单</option>
+                <option>菜单1</option>
+            </select>
+            <input type="text" class="textbox textbox_225" placeholder="输入产品关键词或产品货号..."/>
+            <input type="button" value="查询" class="group_btn"/>
+        </section>
+        <form action="__CONTROLLER__/catesort" method="post">
+        <table class="table">
+            <tr>
+                <th>栏目ID</th>
+                <th>栏目排序</th>
+                <th>栏目名称</th>
+                <th>栏目类型</th>
+                <th>缩略图</th>
+                <th>是否显示</th>
+                <th>操作</th>
+            </tr>
+
+            <volist name="cateres" id="vo">
+                <tr>
+                    <td class="center">{$vo['cate_id']}</td>
+                    <td class="center"><input type="text" name="{$vo['cate_id']}"  value="{$vo['cate_sort']}" style="width: 50px;text-align: center;"/></td>
+                    <td> <?php echo str_repeat("-",$vo["level"]*3);?>{$vo['cate_name']}</td>
+                    <td class="center">
+                        <if condition="$vo['cate_type'] eq 1 ">
+                           列表栏目
+                            <elseif condition="$vo['cate_type'] eq 2"/>
+                            单页栏目
+                            <else />
+                                话题
+                        </if>
+
+                    </td>
+                    <td class="center">
+                        <if condition="$vo['cate_pic'] neq ''">
+                            <img src="__ROOT__{$vo['cate_pic']}" width="50" height="50"/>
+                            <else />
+                            暂无图片
+                        </if>
+                    </td>
+                    <td class="center">
+                        <if condition="$vo['show'] eq 1">
+                            是
+                            <else/>
+                            否
+                        </if>
+                    </td>
+                    <td class="center">
+                        <a href="__MODULE__/Article/article_list/cate_id/{$vo['cate_id']}" title="预览" class="link_icon" target="_blank">&#118;</a>
+                        <a href="__CONTROLLER__/cateedit/cate_id/{$vo['cate_id']}" title="编辑" class="link_icon">&#101;</a>
+                        <a href="__CONTROLLER__/cate_del/cate_id/{$vo['cate_id']}"
+                           onclick="return confirm('您确定要删除吗?');" title="删除" class="link_icon">&#100;</a>
+                    </td>
+                </tr>
+
+            </volist>
+            <tr>
+                <td colspan="7"><input style="margin-left: 230px" type="submit" value="保存排序" class="link_btn"/></td>
+            </tr>
+        </table>
+        </form>
+        <aside class="paging">
+            <!--{$page}-->
+        </aside>
+    </div>
+</section>
+</body>
+</html>

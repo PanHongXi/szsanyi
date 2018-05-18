@@ -1,0 +1,17 @@
+<?php
+
+namespace Admin\Controller;
+
+use Think\Controller;
+
+class CommonController extends Controller
+{
+    public function __construct()
+    {
+        parent::__construct();//继承父类
+        if (!session('a_id')) {
+            $this->error('请先登录系统', U('Login/login'));
+        }
+    }
+
+}

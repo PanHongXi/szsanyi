@@ -1,0 +1,549 @@
+﻿@charset "utf-8";
+/* CSS Document li { list-style: none; }*/
+
+* { word-wrap: break-word; word-break:break-all;}
+body, td, input, textarea, select, button { color: #000; font: 10pt/1.6em Helvetica; }
+body, dl, dd, p, h4, form { margin: 0; padding: 0; list-style:none; }
+
+body{ width:960px; margin:0 auto; text-align:left;}
+.clr{clear:both;height:0px;overflow:hidden;visibility:hidden;}
+
+
+.666{ color:#666;}
+.CCA400{ color:#CCA400;}
+.F00{ color:#FF0000;}
+.marginLeft { margin-left:10px;}
+
+.CurrentLocation {
+	background-image: url(http://img.ed2000.com/Images/position.gif);
+	background-repeat: no-repeat;
+	background-position:center left;
+	text-indent:15px;
+	height:20px; 
+}
+
+
+/*页面宽度设置*/
+
+
+a{ text-decoration: none; color: #003366;cursor:pointer;}
+a:hover{ text-decoration:underline; color: #003366;}
+
+/*顶部 Logo Banner*/
+.ed2000logo {
+  display: block;
+  width: 201px;
+  height: 60px;
+  background-image: url(http://img.ed2000.com/Images/logo_200x60.png);
+  background-repeat: no-repeat;
+}
+.header {_display:inline-block; overflow:hidden;padding-bottom:5px;}
+.header .logo {float:left; overflow:hidden; padding-top:20px;}
+.header .banner {width: 750px; float:right; overflow:hidden; text-align:right;}
+
+/*菜单部份*/
+.topmenu{ height:40px; font-size:11pt; background:url(http://img.ed2000.com/images/topmenu_bg.gif) left top repeat-x;}
+.topmenu ul{ margin: 0; padding: 0; list-style:none;  height:40px; background:url(http://img.ed2000.com/images/topmenu_r.gif) top center no-repeat; overflow:hidden;}
+.topmenu ul li{ float:left; margin-left:-2px; text-align:center; background:url(http://img.ed2000.com/images/topmenu_bg.gif) left bottom no-repeat;letter-spacing:2px;}
+.topmenu ul li a{ color:#FFFFFF; display:block; padding:0 15px; text-decoration:none; line-height:37px;}
+.topmenu ul li a:hover{ color:#FFFF99; background:url(http://img.ed2000.com/images/topmenu_o.gif) center bottom no-repeat;}
+.topmenu ul li a.thisclass{ color:#FFFF99; background:url(http://img.ed2000.com/images/topmenu_o.gif) center bottom no-repeat;}
+
+
+/*内容主体部份*/
+
+.left { float:left; width:220px;}
+.LeftPartA{ width:100%;}
+.LeftPartA dl{ border-bottom:1px solid #EEE;}
+.LeftPartA dl dt{
+	height:18px;
+	padding-top:11px;
+	text-indent:33px;
+	letter-spacing:2px;
+	font-weight:bold;
+	color:#544;
+	background:url(http://img.ed2000.com/images/title.gif) no-repeat;
+}
+.LeftPartA dl dd{
+	height:28px;
+	line-height:28px;
+	border-width:0 1px 0 1px; 
+	border-color:#EEE;
+	border-style:solid;
+	text-indent:24px;
+	background:url(http://img.ed2000.com/images/li_icon.gif) no-repeat 10px 10px; width:99%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+
+
+
+.share{ width:100%;}
+.share dl{ border-bottom:1px solid #EEE;}
+.share dl dt{
+	height:18px;
+	padding-top:11px;
+	text-indent:38px;
+	letter-spacing:15px;
+	font-weight:bold;
+	color:#544;
+	background:url(http://img.ed2000.com/images/title.gif) no-repeat;
+}
+.share dl dd{
+	padding-left:5px;
+	padding-top:5px;
+	border-width:0 1px 0 1px; 
+	border-color:#EEE;
+	border-style:solid;
+	white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+
+
+.r_soft{border:1px solid #EEE; padding:5px; }
+.r_soft h3{ font-size:11pt; font-weight:bold; color:#00AA00;}
+
+/*首页更新列表*/
+.right { float:left;}
+
+.rightA h4{background:url(http://img.ed2000.com/images/tlist_title.jpg) no-repeat;padding-top:7px;text-indent:40px;}
+.rightB h4{background:url(http://img.ed2000.com/images/rlist_title_bg.gif) no-repeat; padding-top:7px; text-indent:40px;}
+
+.rightA, .rightB { float:left; width:360px;white-space:nowrap;overflow:hidden; margin-left:9px;padding-bottom:7px;}
+.rightA ul, .rightB ul{margin: 0; padding: 0; list-style:none;}
+.rightA li, .rightB li{width:100%;height:24px;line-height:25px;overflow:hidden;float:left;}
+.rightA li label, .rightB li label{float:left;width:305px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis; padding-left:5px;}
+
+
+.entry-content{overflow:hidden;white-space:nowrap;text-overflow:ellipsis; padding-left:5px;}
+.entry-content .date{float:right;font-weight:normal;color:#CCA400}
+
+/*首页更新列表*/
+
+
+
+
+
+/*底部*/
+.footer { text-align:center; padding-top:5px; border-top:#999 solid 1px;}
+
+
+
+
+
+/*多页 换页样式*/
+.PageInation {
+	margin: 1px 0px;
+	clear: both;}
+.PageInation a {
+	float: left;
+	padding: 4px 5px 3px 5px;
+	text-decoration: none;
+	cursor:default;
+}
+.MultiPages {
+	background-color: #F5FBFF;
+	border: 1px solid #999;
+	margin-right:2px;
+	font-weight: bold;
+}
+.PageNum {
+	background-color: #FFFFFF;
+	border: 1px solid #666;
+	margin-right:2px;
+	margin-bottom:2px;
+}
+a.PageNum:hover {
+	background-color: #CCC;
+	border: 1px solid #666;
+	text-decoration: none;
+	cursor:pointer;
+}
+.CurrentPage {
+	margin-right:2px;
+	border: 1px solid #666;
+	background-color: #CCC;
+	font-weight: bold;
+	vertical-align: middle;
+}
+.PageInput {
+	margin-bottom:0px;
+	border: 1px solid #666;
+	padding: 2px 0px 0px 1px;
+	width: 40px;
+	height: 18px !important;
+	height: 16px;
+	margin: 0px;
+	background: #FFFFFF;
+}
+
+
+
+
+
+
+
+/* 列表TABLE */
+.CommonListArea{background-color: #EFEFEF;border: 1px solid #CCC;padding:1px;text-indent:3px;line-height:28px;}
+
+/* 列表标题 */
+.CommonListTitle{background:#CCC;}
+.CommonListTitle a{color:#333;}
+
+/* 列表页眉 */
+.CommonListHeader{background:#EFEFEF;color:#000000;}
+
+/* 列表单元格 */
+.CommonListCell{background-color: #FFFFFF;}
+.CommonListCellChecked{background-color: #FFFFCC;}
+
+
+
+/* User Register*/
+.action{ clear:both; padding:10px 0; text-align:center}
+.confirm_btn{ background:url(http://img.ed2000.com/images/sub_btn.gif) no-repeat; width:110px; height:30px; border:none; cursor:pointer;}
+.input{ background:url(http://img.ed2000.com/images/input_bg.gif) no-repeat; height:20px; line-height:20px; border:1px solid #ccc; padding:0 0 0 4px; width:180px;}
+.w_115{ width:115px;}
+.w_240{ width:240px;float:left;}
+
+.reg{ clear:both; width:850px; margin:10px auto;}
+	.reg p{ clear:both; text-align:left; padding:5px 0;}
+	.reg p;after{content:"";display:block; height:0; clear:both; visbility:hidden;}
+
+	.reg label{ color:#000; width:170px; text-align:right; float:left; padding-top:3px; margin-right:10px;}
+	.reg em{ color:#FF0000; display:block; clear:both; }
+.sfl{ width:244px; float:left; text-align:left;}
+.sfr{ width:350px; float:left; margin-left:20px; color:#999;}
+.bline{ clear:both; width:695px; margin:10px auto; border-bottom:1px solid #efefef; height:1px; clear:both; overflow:hidden;}
+
+.reg h4{ background:url(http://img.ed2000.com/images/h4_bg.gif) no-repeat; clear:both; height:40px; font-weight:bold; color:#fff; text-align:left; padding:5px 0 0 20px; margin:10px 0 15px 0;}
+	.reg h4 span{ float:right; padding-right:30px; margin-top:-5px;}
+	.reg h4 a{ float:left; padding-top:5px; margin:0 5px;}
+
+/*密码强度 CSS*/
+.pw_power{ border:1px solid #ccc; height:15px;background:url(http://img.ed2000.com/images/pw_power.jpg) no-repeat; display:block;}
+.pw_ebb{ width:79px; }
+.pw_mid{ width:158px;}
+.pw_strong{ width:238px;}
+
+
+
+
+
+
+/*Pannel Style !important for Firefox*/
+.MenuTag {
+	height:26px !important; height: 25px; overflow:visible !important; overflow:hidden;
+}
+.MenuTag li {
+	padding: 2px 10px; *padding-top:2px !important; *padding-top:1px; margin-bottom:-1px !important; margin-left:8px; position: relative; float: left; cursor: pointer; text-align:center; border:#696969 1px solid;background-color:#696969; color:#FFFFFF;
+}
+.MenuTag li.NowTag {
+	background-color:#FFFFFF; border-bottom:#FFFFFF 1px solid; color:#333;
+}
+.PannelBody {border:1px #333 solid; background-color: #FFFFFF;padding:10px;}
+.PannelBody img{max-width:100%;}
+.PannelBody .TdTitle{ padding:5px 5px 0 5px; color:#333;}
+.PannelBody .TdBody{ color:#333;white-space:normal; word-break:break-all;}
+
+
+.menuskin {
+	width:650px;
+	padding:3px;
+	text-align:left;
+	border-right: #0A2999 1px solid ;
+	border-top: #0A2999 1px solid;
+	border-left: #0A2999 1px solid;
+	border-bottom: #0A2999 1px solid;
+	background-color: #FFFFCC;
+	position: absolute;
+	visibility:hidden;
+	z-index:1;
+}
+
+
+
+/*首页分类资源列表*/
+.rtwp01{border:1px solid #ace;overflow:hidden;text-align:left;}
+.tbtn1{font-size:12px;font-weight:normal;height:26px;}
+.tbtn1 li{border:1px solid #ace;border-left:none;border-top:none;color:#07519A;cursor:pointer;display:block;float:left;text-align:center;text-decoration:none;width:80px;text-decoration:center;height:25px;line-height:25px;}
+.tbtn1 li:hover{text-decoration:underline;}
+.tbtn1 li.NowTag{background:#fff;border-bottom-color:#fff;cursor:default;}
+.FileSort li { width:161px;}
+.tbtn1 .tbttl{height:25px;line-height:25px;width:78px;text-align:left;font-weight:bold;font-size:14px;padding-left:10px;cursor:default;text-decoration:none;background:url(http://img.ed2000.com/images/msfp_015.gif) repeat-x;float:left;border:1px solid #ace;border-left:none;border-top:none;color:#07519A;}
+.tbtncon{height:26px;float:left;background:url(http://img.ed2000.com/images/msfp_016.gif) repeat-x;}
+.inwrap05{display:inline;float:left;margin:9px 1px 0 10px;background:#FFFFFF; _width:97%}
+
+
+
+
+/*编辑器变大样式*/
+#handle{ width:617px; height:12px; margin-top:-2px; background:#E3E3E3 url(http://img.ed2000.com/images/dragable.png) center center no-repeat;}
+#handle, x:-moz-any-link{width:617px;}
+body:first-of-type #handle{display: none;}
+
+
+/*段落*/
+.p1 {
+	word-spacing: 0; text-indent: 2em; line-height: 20pt; margin: 0;
+}
+a.SubCategory {background:transparent url(http://img.ed2000.com/images/submenudot.gif) no-repeat left center; padding-left:6px; padding-right:10px}
+
+
+
+.CommonSoft { clear:both; border:solid #ace; border-width:1px; overflow:hidden; zoom:1; }
+	.CommonSoft h3 { padding:1px 6px; height:70px; color:#07519A; line-height:18px; background:#E6F0FB; border:solid #ace; border-width:0 1px 0 0; float:left; width:14px;}
+	.CommonSoft dl { float:left; width:9.7%; width:9.6% !important; overflow:hidden; border:solid #ace; border-width: 0 1px 0 0; margin:0; padding:0; }
+	.CommonSoft dt { height:26px; margin:0; padding:0; line-height:25px; overflow:hidden; background:#FFF url(http://img.ed2000.com/images/msfp_016.gif) center center; color:#07519A; border-bottom:1px solid #ace; text-align:center; }
+	.CommonSoft dd { margin: 0; padding:0; line-height:22px; text-align:center; background: #FFF; width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+	
+/*个人资料页面*/
+.bdgray { border: 1px solid #D2D2D2; margin-bottom: 2px; }
+	.bdgray .title { height: 23px; line-height: 24px; overflow: hidden; background: url(http://img.ed2000.com/images/title_gray.jpg) repeat-x 0 23px; padding: 3px 12px 0; }
+		.bdgray .title span,
+		.bdgray .title strong { float: left; height: 23px; padding: 0 12px; background: url(http://img.ed2000.com/images/title_gray_r.jpg) no-repeat top right; line-height: 25px; overflow: hidden; font-weight: bold; }
+		.bdgray .title span { color: #666; padding: 0; background: url(http://img.ed2000.com/images/title_gray_l.jpg) no-repeat 0 0; }
+		.bdgray .title a { float: right; }
+	.bdgray  dd{padding:3px 5px;}
+	
+/*弹出菜单DIV样式*/
+.PopupMenu {
+	border: #999 1px solid;
+	position: absolute;
+	background: #FFF;
+
+}
+.PopupMenu A {
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 3px;
+	padding-top: 3px;
+	DISPLAY: block;
+	background-repeat: no-repeat;
+	background-position: 1px;
+
+}
+.PopupMenu A:hover {
+
+	background-repeat: no-repeat;
+	background-position: 1px;
+}
+
+
+
+/*----------搜索*/
+.topsearch{
+	height:37px;
+	margin-top:3px;
+	border-right:1px solid #EEE;
+	background:url(http://img.ed2000.com/images/topsearch_bg.gif) repeat-x;
+	overflow:hidden;
+}
+.topsearch .title{
+	height:37px;
+	width:83px;
+	float:left;
+	background:url(http://img.ed2000.com/images/topsearch_title.gif) left center no-repeat;
+}
+.topsearch .inpbox{
+	float:left;
+	margin-top:4px;
+}
+.topsearch .inpbox input{
+	font-size:12px;
+	margin:auto 10px;
+}
+.topsearch .inpbox select{
+	font-size:12px;
+	width:150px;
+}
+.topsearch .inpbox .searchtxt{
+	height:18px;
+	width:200px;
+	font-size:12px;
+	border-width:1px;
+	border-style:solid;
+	border-color:#808080 #D4D0C8 #D4D0C8 #808080;
+}
+
+#VoteTig {padding-left:20px; color:#999999;}
+
+
+
+
+.watch-comment-char-count{
+border:0;
+width:50px;
+height:19px;
+padding-top:5px;
+}
+
+
+
+.watch-comment-voting a{
+color:#03c;
+cursor:pointer;
+cursor:hand;
+}
+.watch-comment-score{
+font-size:11px;
+font-weight:bold;
+}
+.watch-comment-msg{
+float:right;
+font-size:11px;
+color:#666;
+}
+.watch-comment-green{
+color:green;
+}
+.watch-comment-gray{
+color:gray;
+}
+.watch-comment-red{
+color:#f33;
+}
+
+.watch-comment-down,
+.watch-comment-down-on,
+.watch-comment-down-hover,
+.watch-comment-up,
+.watch-comment-up-on,
+.watch-comment-up-hover{
+width:19px;
+height:19px;
+border:0px;
+vertical-align:bottom;
+}
+.watch-comment-down-hover:hover,
+.watch-comment-down-on{
+background:transparent url(http://img.ed2000.com/images/hand_down_2.gif) no-repeat;
+}
+.watch-comment-down,
+.watch-comment-down-hover,
+.watch-comment-voting-off .watch-comment-down-hover{
+background:transparent url(http://img.ed2000.com/images/hand_down_1.gif) no-repeat;
+}
+.watch-comment-up-hover:hover,
+.watch-comment-up-on{
+background:transparent url(http://img.ed2000.com/images/hand_up_2.gif) no-repeat;
+}
+.watch-comment-up,
+.watch-comment-up-hover,
+.watch-comment-voting-off .watch-comment-up-hover{
+background:transparent url(http://img.ed2000.com/images/hand_up_1.gif) no-repeat;
+}
+.opacity30,
+.watch-comment-up,
+.watch-comment-down,
+.watch-comment-voting-off .watch-comment-down-hover,
+.watch-comment-voting-off .watch-comment-up-hover{
+opacity:.3;
+-moz-opacity:.3;
+filter:alpha(opacity=30);
+}
+.opacity80,
+.watch-comment-down-on, .watch-comment-up-on,
+.watch-comment-down-hover, .watch-comment-up-hover{
+opacity:.8;
+-moz-opacity:.8;
+filter:alpha(opacity=80);
+}
+
+.QuickReplayTD{ text-align:left;}
+
+
+
+
+/* Modal Styles */
+.CommonModalMask {
+	background-image: url("http://img.ed2000.com/images/maskBG.png") !important; /* For browsers Moz, Opera, etc. */
+}
+.CommonModal {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #888888;
+	border-right-width: 3px;
+	border-right-color: #888888;
+	border-bottom-width: 3px;
+	border-bottom-color: #888888;
+	background-color: #eeeeee;
+}
+.CommonModalTitle {
+	background-color: #698CC3;
+	padding: 4px;
+	border-style: solid;
+	border-width: 0px;
+	border-bottom-width: 1px;
+	border-color: #6e90bd;
+	color: #ffffff;
+	font-family: Arial, Helvetica;
+	font-size: 110%;
+	font-weight: bold;
+	margin: 0px;
+	height: 1.3em;
+	position: relative;
+	z-index: 203;
+	cursor: move
+}
+.CommonModalClose {
+	width: 33px;
+	height: 12px;
+	background-image: url(http://img.ed2000.com/images/close.gif);
+	background-repeat: no-repeat;
+	overflow: hidden;
+	cursor: pointer;
+	float: right;
+}
+.CommonModalContent {
+	background-color: #ffffff;
+}
+.CommonModalFooter 
+{
+	border-style: solid;
+	border-width: 0px;
+	border-top-width: 1px;
+	border-color: #cccccc;
+	background-color: #eeeeee;
+	padding: 2px;
+}
+.CommonModalResize {
+	width: 14px;
+	height: 14px;
+	background-image: url(http://img.ed2000.com/images/resize.gif);
+	background-repeat: no-repeat;
+	overflow: hidden;
+	float: right;
+	cursor: se-resize;
+}
+
+.floatcode{padding:5px;font-size: 12px; border: solid #CAD9EA; border-width: 1px; background: #FFF ; overflow: hidden; clear:both;}
+
+
+.sign {
+	max-height:90px;overflow:hidden;
+	background: url("http://img.ed2000.com/Themes/sigline.gif") no-repeat 0px 0px; line-height: 1.6em; overflow: hidden; padding-top: 20px; margin-bottom: 10px;margin-top:20px;
+}
+
+.quotetop {
+	background: url("http://img.ed2000.com/Themes/css_img_quote.gif") no-repeat right rgb(228, 234, 242); border-width: 1px 1px 0px 4px; border-style: dotted dotted none solid; border-color: rgb(0, 0, 0) rgb(0, 0, 0) currentColor rgb(131, 148, 178); margin: 0px; padding: 3px; color: rgb(0, 0, 0); font-size: 12px; font-weight: bold;
+}
+.quotemain {
+	background: rgb(250, 252, 254); border-width: 0px 1px 1px 4px; border-style: none dotted dotted solid; border-color: currentColor rgb(0, 0, 0) rgb(0, 0, 0) rgb(131, 148, 178); margin: 0px 0px 10px; padding: 2px; color: rgb(70, 85, 132);
+}
+
+.codetop {
+	background: url("http://img.ed2000.com/Themes/css_img_code.gif") no-repeat right rgb(253, 219, 204); border-width: 1px 1px 0px 4px; border-style: dotted dotted none solid; border-color: rgb(0, 0, 0) rgb(0, 0, 0) currentColor rgb(204, 102, 51); margin: 0px; padding: 3px; color: rgb(0, 0, 0); font-weight: bold;
+}
+.codemain {
+	background: rgb(250, 252, 254); border-width: 0px 1px 1px 4px; border-style: none dotted dotted solid; border-color: currentColor rgb(0, 0, 0) rgb(0, 0, 0) rgb(204, 102, 51); margin: 0px 0px 10px; padding: 2px; color: rgb(70, 85, 132); font-family: Courier,Courier New,Verdana,Arial;
+}
+
+.ListArea{ clear:both;margin-top: 5px;padding:0px; width:100%; }
+.ed2kList{ clear:both;margin-top:0; margin-bottom:0;}
+.ed2kList li{ float:left; list-style:none; padding:3px; margin-top:-1px; margin-right:-1px; display:inline; white-space:nowrap; border:1px solid #666;text-align:center;}
+.ListAreaHeader{ background-color: #EFEFEF;}
+
+.width_70{ width:770px;}
+.width_30{ width:100px;}
+
+#cnzz a {color:#FFFFFF}

@@ -1,0 +1,141 @@
+<div id="site_nav">
+    <div class="sn_container clearfix">
+        <ul class="tg_tools fr">
+            <li class="no-hover">
+                <a href="http://www.sucaihuo.com/Member/pay.html" class="head_pay_btn">充值</a>
+            </li>
+            <li class="no-hover" style="display: none">
+                <a id="msg_notify" class="msg_notify" href="http://www.sucaihuo.com/Member/message.html"></a>
+            </li>
+            <li class="box_color nav_home">
+                <span><a href="__APP__/Home/Member/member_info">个人中心</a></span><b class="icon"></b>
+                <ul>
+                    <li><a href="__APP__/Home/Member/member_info"><span>我的主页</span></a></li>
+                    <li><a href="__MODULE__/Userinfo/user_info/user_id/{$_SESSION['user_id']}"><span>个人设置</span></a></li>
+                    <li><a href="http://www.sucaihuo.com/Member/downloads.html"><span>下载记录</span></a></li>
+                    <li><a href="http://www.sucaihuo.com/Member/collects.html"><span>我的收藏</span></a></li>
+                    <li><a href="http://www.sucaihuo.com/Member/sign.html"><span>我的签到</span></a></li>
+                    <li><a href="http://www.sucaihuo.com/Download/logout?r="><span>退出登录</span></a></li>
+                </ul>
+            </li>
+            <li class="tg-line icon"></li>
+            <li class="box_color">
+                <span>帮助中心</span><b class="icon"></b>
+                <ul>
+                    <li><a href="http://www.sucaihuo.com/help/template"><span>扒模板</span></a></li>
+                    <li><a href="http://www.sucaihuo.com/help/points"><span>积分获取</span></a></li>
+                    <li><a href="http://www.sucaihuo.com/help/contact"><span>联系我们</span></a></li>
+                    <li><a href="http://www.sucaihuo.com/help/index"><span>关于我们</span></a></li>
+                    <li><a href="http://www.sucaihuo.com/help/job"><span>招纳贤士</span></a></li>
+                </ul>
+            </li>
+        </ul>
+
+
+
+        <ul  class="tg_tools fl" id="" style="display: inline;">
+            <!--login_area-->
+            <li class="tg_tools_home no-hover">
+                <i class="icon-more"></i>
+                <span><a href="http://www.sucaihuo.com/">素材火首页</a></span>
+            </li>
+
+            <if condition="!isset($_SESSION['user_id'])">
+                  <!--session['user_id']-->
+                <!--!isset($_SESSION['user_id']) or !isset($_SESSION['username'])-->
+                <li class="no-hover nologin">
+                <span>
+                    <a href="http://www.sucaihuo.com/Index/login/type/qq.html">
+                        <img alt="Connect_logo_6.png" src="__Images__/Connect_logo_6.png" style="position: relative;top:3px;">
+                    </a>
+                </span>
+                </li>
+
+                </li>
+                <li class="tg-line icon"></li>
+                <li class="no-hover nologin">
+                <span>
+                    <a href="__APP__/Home/Account/register">注册</a>
+                </span>
+                </li>
+                <li class="box_color nav_home" id="nav_login">
+                        <span>
+                            <a href="__APP__/Home/Account/login" class="sn_login">登录</a>
+                        </span>
+                    <b class="icon"></b>
+                    <ul>
+                        <li>
+                            <a href="http://www.sucaihuo.com/Index/login/type/sina.html">
+                                <span>新浪微博</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.sucaihuo.com/Index/login/type/renren.html">
+                                <span>人人网<i style="visibility: hidden">站</i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <else />
+                <li class="no-hover  haslogin">
+                <span>
+                    <a href="__MODULE__/Member/member_info/user_id/{$_SESSION['user_id']}">
+                        <font  id="head_username" class="sn_login username">{$_SESSION['username']}</font>
+                        <!--{$_SESSION['username']}-->
+                        <!--{$Think.session.username.}-->
+                    </a>
+                </span>
+                <li class="no-hover  haslogin">
+                    <span><a href="__APP__/Home/Account/loginOut">退出</a></span>
+                </li>
+            </if>
+        </ul>
+    </div>
+</div>
+<div id="header">
+    <div class="tg_tools_home">
+        <div class="bbs_enter">
+            <a class="bbs-banner" href="http://www.sucaihuo.com/Member/pay.html" target="_blank"><img
+                    src="__Images__/banner.jpg" alt="扒模板"></a>
+        </div>
+        <div class="logo">
+            <a class="logo-bd" href="http://www.sucaihuo.com/"><img src="__Images__/logo.png" alt="素材火logo"></a>
+        </div>
+        <form action="http://www.sucaihuo.com/search.html" method="GET" id="form_search" onsubmit="return searchSub()">
+            <div id="search">
+                <div class="search_area">
+                    <input value="搜 索" class="btn_search" type="submit">
+                    <div class="search_select">
+                        <span class="icon-search"></span>
+                    </div>
+                    <input value="请输入搜索内容" class="search_input" autocomplete="off" id="search_input"
+                           data-default="请输入搜索内容" onblur="checkInputBlur($(this))" onfocus="checkInputFocus($(this))"
+                           type="text">
+                    <input name="keyword" type="hidden">
+                </div>
+                <div class="search_box hide" id="search_box"></div>
+                <div class="search_keywords">
+                    <span>热门搜索：</span>
+                    <a href="http://www.sucaihuo.com/search/search.html?keyword=%E6%89%8B%E6%9C%BA" class="red">手机</a>
+                    <a href="http://www.sucaihuo.com/js/8-0-0-0">导航菜单</a>
+                    <a href="http://www.sucaihuo.com/search/search.html?keyword=bootstrap">bootstrap</a>
+                    <a href="http://www.sucaihuo.com/search/search.html?keyword=%E5%90%8E%E5%8F%B0">后台</a>
+                    <a href="http://www.sucaihuo.com/search/search.html?keyword=%E4%B8%8A%E4%BC%A0" class="red">上传</a>
+                    <a href="http://www.sucaihuo.com/search/search.html?keyword=%E8%B4%AD%E7%89%A9%E8%BD%A6">购物车</a>
+                    <a href="http://www.sucaihuo.com/js/106-0-0-0" class="red">日期时间</a>
+                    <a href="http://www.sucaihuo.com/search/search.html?keyword=%E5%BC%B9%E5%87%BA%E5%B1%82">弹出层</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="nav" class="nav">
+    <div class="nav_main clearfix">
+        <a href="__APP__" class="menu <if condition=" $curr">current</if>">首 页</a>
+        <volist name="cateRes" id="vo">
+            <a href="__MODULE__/<if condition=" $vo['cate_type'] eq 0">Lst<elseif condition="$vo['cate_type'] eq 1"/>Page<else/>Topic</if>/index/cate_id/{$vo['cate_id']}" class="menu <if condition="$current eq $vo['cate_id'] || $topId eq $vo['cate_id']">current</if>">{$vo['cate_name']}</a>
+        </volist>
+        <span class="icon_hot"></span>
+    </div>
+</div>
+<div class="w_list marquee_announce" style="margin:15px auto 0;width: 1105px;"><marquee scrollamount="5" scrolldelay="10">【<span class="marquee_main">曾经有一个优质网页素材站放在我的面前，我没有好好收藏，当我要用到素材的时候才后悔莫及，如果上天再一次让我来到这个网站，我一定会记住那三个字：素材火！如果这样还怕忘掉，我建议你：收藏夹！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red">温馨提示：</span>已下载的素材再次下载免积分。冲200元以上送一次扒模板机会，冲300元送两次扒模板机会，冲的多送的多</span>，<a href="http://www.lanrenzhijia.com" target="_blank">懒人之家</a>投放广告和技术问题协助联系QQ416148489】</marquee></div>

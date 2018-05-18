@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理系统</title>
+    <meta name="author" content="DeathGhost"/>
+    <link rel="stylesheet" type="text/css" href="__Css__/style.css">
+    <!--[if lt IE 9]>
+    <script src="__Js__/html5.js"></script>
+    <![endif]-->
+    <script src="__Js__/jquery.js"></script>
+    <script src="__Js__/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+        (function ($) {
+            $(window).load(function () {
+
+                $("a[rel='load-content']").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr("href");
+                    $.get(url, function (data) {
+                        $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                        //scroll-to appended content
+                        $(".content").mCustomScrollbar("scrollTo", "h2:last");
+                    });
+                });
+
+                $(".content").delegate("a[href='top']", "click", function (e) {
+                    e.preventDefault();
+                    $(".content").mCustomScrollbar("scrollTo", $(this).attr("href"));
+                });
+
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+<!--header-->
+<include file="Common/head"/>
+<!--aside nav-->
+<!--aside nav-->
+<include file="Common/left"/>
+<section class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">系统设置</h2>
+            <a class="fr top_rt_btn" href="__MODULE__/Contact/lst">返回系统列表</a>
+        </div>
+        <form method="post" action="" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{$info['id']}"/>
+            <section>
+                <ul class="ulColumn2">
+                    <li>
+                        <span class="item_name" style="width:120px;">联系人：</span>
+                        <input type="text" name="people" class="textbox textbox_295" value="{$info['people']}"/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">手机：</span>
+                        <input type="text" name="phone" class="textbox textbox_295" value="{$info['phone']}" />
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">微信号：</span>
+                        <input type="text" name="wechat" class="textbox textbox_295" value="{$info['wechat']}" />
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">传真：</span>
+                        <input type="text" name="fax" class="textbox textbox_295" value="{$info['fax']}"/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">邮箱：</span>
+                        <input type="text" name="email" class="textbox textbox_295" value="{$info['email']}"/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">销售QQ：</span>
+                        <input name="qq" class="textbox textbox_295" value="{$info['qq']}"/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">地址公司：</span>
+                        <input name="address" class="textbox textbox_295" value="{$info['address']}"/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">工厂地址：</span>
+                        <input name="faddress" class="textbox textbox_295" value="{$info['faddress']}"/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;"></span>
+                        <input type="submit" value="保存修改" class="link_btn"/>
+                    </li>
+                </ul>
+            </section>
+        </form>
+    </div>
+</section>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="__Js__/ueditor.config.js"></script>
+<script src="__Js__/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('content', {initialFrameWidth: 1500, initialFrameHeight: 400,});
+</script>
+</body>
+</html>

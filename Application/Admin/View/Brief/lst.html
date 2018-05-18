@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理系统</title>
+    <meta name="author" content="DeathGhost"/>
+    <link rel="stylesheet" type="text/css" href="__Css__/style.css">
+    <!--[if lt IE 9]>
+    <script src="__Js__/html5.js"></script>
+    <![endif]-->
+    <script src="__Js__/jquery.js"></script>
+    <script src="__Js__/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+
+        (function ($) {
+            $(window).load(function () {
+
+                $("a[rel='load-content']").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr("href");
+                    $.get(url, function (data) {
+                        $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                        //scroll-to appended content
+                        $(".content").mCustomScrollbar("scrollTo", "h2:last");
+                    });
+                });
+
+                $(".content").delegate("a[href='top']", "click", function (e) {
+                    e.preventDefault();
+                    $(".content").mCustomScrollbar("scrollTo", $(this).attr("href"));
+                });
+
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+<!--header-->
+<include file="Common/head"/>
+<!--aside nav-->
+<!--aside nav-->
+<include file="Common/left"/>
+
+<section class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">三一精工简介</h2>
+            <a href="__MODULE__/Brief/add" class="fr top_rt_btn add_icon">添加简介</a>
+        </div>
+        <form action="" method="get">
+            <section class="mtb">
+                <input type="text" value="" name="brief_title" class="textbox textbox_225" placeholder="输入标题..."/>
+                <input type="submit" value="查询" class="group_btn"/>
+            </section>
+        </form>
+        <form action="__CONTROLLER__/catesort" method="post">
+            <table class="table">
+                <tr>
+                    <th style="width: 50px">标题ID</th>
+                    <th>标题</th>
+                    <th>浏览次数</th>
+                    <th>图片</th>
+                    <th style="width: 120px">是否显示</th>
+                    <th style="width: 120px">内容类型</th>
+                    <th style="width: 120px">发布作者</th>
+                    <th style="width: 140px">发布时间</th>
+                    <th style="width: 120px">操作</th>
+                </tr>
+
+                <volist name="lists" id="vo">
+                    <tr>
+                        <td class="center">{$vo['brief_id']}</td>
+                        <td class="center">{$vo['brief_title']}</td>
+                        <td class="center">{$vo['click']}</td>
+                        <td class="center">
+                            <if condition="$vo['brief_pic'] neq ''">
+                                <img src="__ROOT__{$vo['brief_pic']}" width="50" height="50"/>
+                                <else/>
+                                暂无图片
+                            </if>
+                        </td>
+                        <td class="center">
+                            <if condition="$vo['brief_reco'] eq 1">
+                                是
+                                <else/>
+                                否
+                            </if>
+                        </td>
+                        <td class="center">
+                            <if condition="$vo['type'] eq 1">
+                                简介
+                                <else/>
+                                资质荣誉
+                            </if>
+                        </td>
+                        <td class="center">{$vo['brief_author']}</td>
+                        <td class="center">{$vo['brief_time']|date="Y-m-d H:i",###}</td>
+                        <td class="center">
+                            <a href="__CONTROLLER__/edit/brief_id/{$vo['brief_id']}" title="编辑"
+                               class="link_icon">&#101;</a>
+                            <a href="__CONTROLLER__/del/brief_id/{$vo['brief_id']}"
+                               onclick="return confirm('您确定要删除吗?');" title="删除" class="link_icon">&#100;</a>
+                        </td>
+                    </tr>
+                </volist>
+            </table>
+        </form>
+        <aside class="paging">
+            {$page}
+        </aside>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理系统</title>
+    <meta name="author" content="DeathGhost"/>
+    <link rel="stylesheet" type="text/css" href="__Css__/style.css">
+    <!--[if lt IE 9]>
+    <script src="__Js__/html5.js"></script>
+    <![endif]-->
+    <script src="__Js__/jquery.js"></script>
+    <script src="__Js__/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+
+        (function ($) {
+            $(window).load(function () {
+
+                $("a[rel='load-content']").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr("href");
+                    $.get(url, function (data) {
+                        $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                        //scroll-to appended content
+                        $(".content").mCustomScrollbar("scrollTo", "h2:last");
+                    });
+                });
+
+                $(".content").delegate("a[href='top']", "click", function (e) {
+                    e.preventDefault();
+                    $(".content").mCustomScrollbar("scrollTo", $(this).attr("href"));
+                });
+
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+<!--header-->
+<include file="Common/head"/>
+<!--aside nav-->
+<!--aside nav-->
+<include file="Common/left"/>
+
+<section class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">话题列表</h2>
+            <a href="__MODULE__/Topic/topicAdd" class="fr top_rt_btn add_icon">添加话题</a>
+        </div>
+        <form action="" method="get">
+            <section class="mtb">
+                <input type="text" value="" name="article_title" class="textbox textbox_225" placeholder="输入话题关键词..."/>
+                <input type="submit" value="查询" class="group_btn"/>
+            </section>
+        </form>
+        <form action="__CONTROLLER__/catesort" method="post">
+            <table class="table">
+                <tr>
+                    <th style="width: 50px">话题ID</th>
+                    <th>话题标题</th>
+                    <th>话题作者</th>
+                    <th>话题类型</th>
+                    <th>发布时间</th>
+                    <th>操作</th>
+                </tr>
+
+                <volist name="list" id="vo">
+                    <tr>
+                        <td class="center">{$vo['topic_id']}</td>
+                        <td class="center">{$vo['topic_title']}</td>
+                        <td class="center">{$vo['username']}</td>
+                        <td class="center">{$vo['cate_name']}</td>
+                        <td class="center">{$vo['release_time']|date="Y-m-d H:i:s",###}</td>
+                        <td class="center">
+                            <a href="" title="预览" class="link_icon" target="_blank">&#118;</a>
+                            <a href="__CONTROLLER__/topicEdit/topic_id/{$vo['topic_id']}" title="编辑"
+                               class="link_icon">&#101;</a>
+                            <a href="__CONTROLLER__/topic_del/topic_id/{$vo['topic_id']}"
+                               onclick="return confirm('您确定要删除吗?');" title="删除" class="link_icon">&#100;</a>
+                        </td>
+                    </tr>
+                </volist>
+            </table>
+        </form>
+        <aside class="paging">
+            {$page}
+        </aside>
+    </div>
+</section>
+</body>
+</html>

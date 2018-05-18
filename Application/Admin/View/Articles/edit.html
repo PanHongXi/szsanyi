@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理系统</title>
+    <meta name="author" content="DeathGhost"/>
+    <link rel="stylesheet" type="text/css" href="__Css__/style.css">
+    <!--[if lt IE 9]>
+    <script src="__Js__/html5.js"></script>
+    <![endif]-->
+    <script src="__Js__/jquery.js"></script>
+    <script src="__Js__/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+
+        (function ($) {
+            $(window).load(function () {
+
+                $("a[rel='load-content']").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr("href");
+                    $.get(url, function (data) {
+                        $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                        //scroll-to appended content
+                        $(".content").mCustomScrollbar("scrollTo", "h2:last");
+                    });
+                });
+
+                $(".content").delegate("a[href='top']", "click", function (e) {
+                    e.preventDefault();
+                    $(".content").mCustomScrollbar("scrollTo", $(this).attr("href"));
+                });
+
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+<!--header-->
+<include file="Common/head"/>
+<!--aside nav-->
+<!--aside nav-->
+<include file="Common/left"/>
+
+<section class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">添加文章</h2>
+            <a class="fr top_rt_btn" href="__MODULE__/Articles/lst">返回文章列表</a>
+        </div>
+        <form method="post" action="" enctype="multipart/form-data">
+            <input value="{$articlesInfo['articles_id']}" name="articles_id" type="hidden"/>
+            <section>
+                <ul class="ulColumn2">
+                    <li>
+                        <span class="item_name" style="width:120px;">文章标题：</span>
+                        <input type="text" value="{$articlesInfo['articles_title']}" name="articles_title" class="textbox textbox_295"  placeholder="文章标题..."/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章作者：</span>
+                        <input type="text" name="articles_author" class="textbox textbox_295" value="{$articlesInfo['articles_author']}" placeholder="文章作者..."/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章关键字：</span>
+                        <input type="text" name="articles_keys" value="{$articlesInfo['articles_keys']}" class="textbox textbox_295" placeholder="文章关键字.多个用半角’,‘分割"/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章描述：</span>
+                        <textarea name="articles_desc" class="textbox textbox_295"
+                                  style="width: 500px;height: 200px;" placeholder="文章描述">{$articlesInfo['articles_desc']}</textarea>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章推荐：</span>
+                        <label class="single_selection"><input type="radio" value="0" name="articles_reco" <if condition="$articlesInfo['articles_reco'] eq 0" >checked="checked"</if>/>否</label>
+                        <label class="single_selection"><input type="radio" value="1" name="articles_reco" <if condition="$articlesInfo['articles_reco'] eq 1" >checked="checked"</if>/>是</label>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章类型：</span>
+                        <select class="select" name="type_id">
+                            <option value="">选择类型</option>
+                            <volist name="typeList" id="type">
+                                <option value="{$type['type_id']}" <if condition="$type['type_id'] eq $articlesInfo['type_id']" > selected="selected" </if>>{$type['type_name']}</option>
+                            </volist>
+                        </select>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">上传图片：</span>
+                        <label class="uploadImg">
+                            <input type="file" name="articles_pic"/>
+                            <span>上传图片</span>
+                        </label>
+                        <label >
+                            <if condition="$articlesInfo['articles_pic'] neq ''">
+                                <img width="60" height="60" src="__ROOT__/{$articlesInfo['articles_pic']}"/>
+                                <else/>
+                                暂无缩列图
+                            </if>
+                        </label>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章详情：</span>
+
+                        <div id="btns" style="margin-left:120px;margin-top:8px;">
+                            <textarea id="content" name="articles_content">{$articlesInfo['articles_content']}</textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;"></span>
+                        <input type="submit" value="保存修改" class="link_btn"/>
+                    </li>
+                </ul>
+            </section>
+        </form>
+    </div>
+</section>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="__Js__/ueditor.config.js"></script>
+<script src="__Js__/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('content', {initialFrameWidth: 1500, initialFrameHeight: 400,});
+</script>
+</body>
+</html>

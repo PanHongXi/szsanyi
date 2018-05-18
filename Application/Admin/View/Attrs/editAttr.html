@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理系统</title>
+    <meta name="author" content="DeathGhost" />
+    <link rel="stylesheet" type="text/css" href="__Css__/style.css">
+    <!--[if lt IE 9]>
+    <script src="__Js__/html5.js"></script>
+    <![endif]-->
+    <script src="__Js__/jquery.js"></script>
+    <script src="__Js__/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+
+        (function($){
+            $(window).load(function(){
+
+                $("a[rel='load-content']").click(function(e){
+                    e.preventDefault();
+                    var url=$(this).attr("href");
+                    $.get(url,function(data){
+                        $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                        //scroll-to appended content
+                        $(".content").mCustomScrollbar("scrollTo","h2:last");
+                    });
+                });
+
+                $(".content").delegate("a[href='top']","click",function(e){
+                    e.preventDefault();
+                    $(".content").mCustomScrollbar("scrollTo",$(this).attr("href"));
+                });
+
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+<!--header-->
+<include file="Common/head"/>
+<!--aside nav-->
+<!--aside nav-->
+<include file="Common/left"/>
+
+<section class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">添加属性</h2>
+            <a class="fr top_rt_btn" href="__MODULE__/Attrs/attrValue">返回属性</a>
+        </div>
+        <form method="post" action="">
+            <input type="hidden" name="attr_id" value="{$attrs['attr_id']}"/>
+            <section>
+                <ul class="ulColumn2">
+                    <li>
+                        <span class="item_name" style="width:120px;">所属类型：</span>
+                        <select name="type_id" class="textbox textbox_295">
+                            <volist name="typeattr" id="typeattr">
+                                <option value="{$typeattr['type_id']}" <if condition="$typeattr['type_id'] eq $attrs['typeattr_id']"> selected="selected"</if>>{$typeattr['type_name']}</option>
+                            </volist>
+                        </select>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">属性名称：</span>
+                        <input type="text" name="attr_name" value="{$attrs['attr_name']}" class="textbox textbox_295" placeholder="属性名称..."/>
+                        <span class="errorTips">属性名称不能为空...</span>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">属性值：</span>
+                        <textarea required="required" name="attr_value" class="textbox textbox_295" style="width: 500px;height: 200px;" placeholder="栏目描述">{$attrs['attr_value']}</textarea>
+                        <span class="errorTips">多个属性值请用英文的逗号“,”分隔...</span>
+                    </li>
+                </ul>
+                <li>
+                    <span class="item_name" style="width:160px;margin-left: 20%"></span>
+                    <input type="submit" class="link_btn" style="width: 120px" value="保存"/>
+                </li>
+            </section>
+        </form>
+    </div>
+</section>
+
+</body>
+</html>

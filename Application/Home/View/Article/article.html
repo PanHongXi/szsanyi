@@ -1,0 +1,584 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>小猪CMS之PHP环境搭配 - 素材火,素材火官网</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link rel="shortcut icon" href="__Imahes__/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="__Css__/style_version1.css" type="text/css"/>
+    <link rel="stylesheet" href="__Css__/style_version5.css" type="text/css"/>
+    <link rel="stylesheet" href="http://www.sucaihuo.com/other/topic/css/topic.css" type="text/css"/>
+    <style type="text/css">
+        .yanshi {
+            background: url(http://127.0.0.1/sucai/Public/Home/images/yanshi.jpg) no-repeat;
+        }
+        .xiazai{
+            background: url(http://127.0.0.1/sucai/Public/Home/images/xiazai.jpg) no-repeat;
+        }
+    </style>
+    <script type="text/javascript">
+        var contro = '__MODULE__/';
+    </script>
+</head>
+<body>
+
+<include file="Common/header"/>
+
+<div class="breadcrumbs">
+    <span>&gt;</span><a href="http://www.sucaihuo.com/topic">讨论社区</a>
+    <span>&gt;</span>{$articleRes['article_title']}
+</div>
+<div class="container clearfix topic">
+    <div class="sidebar">
+        <div class="sidebar_per">
+            <dl>
+                <dt>
+                    <a href="http://www.sucaihuo.com/topic/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
+                    <strong>最新文章 <span class="name-en">/New</span></strong>
+                </dt>
+
+                <volist name="newArticle" id="newArticle">
+                    <dd class="sidebar_articles">
+                        <span>{$newArticle['article_time']|date='m-d',###}</span>
+                        <a target="_blank" href="__CONTROLLER__/article/article_id/{$newArticle['article_id']}/cate_id/{$newArticle['cate_id']}">{$newArticle['article_title']}</a>
+                    </dd>
+                </volist>
+
+            </dl>
+        </div>
+        <div class="sidebar_per">
+            <dl>
+                <dt>
+                    <a href="http://www.sucaihuo.com/topic/" class="more">更多&nbsp;<span
+                            class="more-sign">&gt;</span></a>
+                    <strong>标签云 <span class="name-en">/Tag</span></strong>
+                </dt>
+                <dd class="sidebar_tags">
+                    <volist name="tagsRes" id="tagsRes">
+                        <a target="_blank" href="__CONTROLLER__/tagesArticle/tags/{$tagsRes}">{$tagsRes}</a>
+                    </volist>
+
+                </dd>
+            </dl>
+        </div>
+        <div class="sidebar_per">
+            <dl>
+                <dt>
+                    <a href="http://www.sucaihuo.com/topic/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
+                    <strong>相关文章<span class="name-en">/Relative</span></strong>
+                </dt>
+                <volist name="Relevant" id="Relevant">
+                    <dd class="sidebar_articles">
+                        <span>{$Relevant['release_time']|date='m-d',###}</span>
+                        <a target="_blank" href="__CONTROLLER__/Article/article_id/{$Relevant['article_id']}/cate_id/{$Relevant['article_id']}">{$Relevant['article_title']}</a>
+                    </dd>
+                </volist>
+
+            </dl>
+        </div>
+        <div class="sidebar_per">
+            <dl>
+                <dt>
+                    <a href="http://www.sucaihuo.com/topic/" class="more">更多&nbsp;<span class="more-sign">&gt;</span></a>
+                    <strong>推荐文章<span class="name-en">/Recommend</span></strong>
+                </dt>
+                <volist name="recommend" id="recommend">
+                    <dd class="sidebar_articles">
+                        <span>{$recommend['article_time']|date='m-d',###}</span>
+                        <a target="_blank" href="__CONTROLLER__/Article/article_id/{$Relevant['article_id']}/cate_id/{$recommend['article_id']}">{$recommend['article_title']}</a>
+                    </dd>
+                </volist>
+
+            </dl>
+        </div>
+    </div>
+    <div class="detail">
+        <div class="head">
+            <div class="head_inner">
+                <if condition="$admin_info['face50'] neq '' ">
+                    <img class="round-image" width="50" height="50" alt="头像" src="__ROOT__/{$admin_info['face50']}"/>
+                    <else/>
+                    <img class="round-image" width="50" height="50" alt="头像" src="__Images__/avatar.jpg "/>
+                </if>
+                <h1>{$articleRes['article_title']}</h1>
+                <p class="info">
+                    <span class="fr">来源：
+                        <a target="_blank" href="<?php echo $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?>"><?php echo $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?></a>
+                    </span>
+                    <span style="color: red">{$admin_info['nickname']}</span>
+                    <span class="addtime">{$articleRes['article_time']|date="Y-m-d H:i",###}</span>
+                    <span>浏览(<span>{$articleRes['click']}</span>)</span>
+                    <a class="poster_likes " onclick="getCollect2($(this))" href="javascript:void(0)">
+                        <if condition="$collect eq 1">
+                            <i class="like_status lm_liked"> </i>
+                            <else/>
+                            <i class="like_status lm_like"> </i>
+                        </if>
+                    </a>
+                    <a id="topic-edit" class="qa-edit hide" data-uid='1' style='position: relative;font-size: 13px;top:2px;left:5px;'  href="http://www.sucaihuo.com/Topic/edit/id/89.html">
+                        <i class="icon-edit"></i>
+                    </a>
+                </p>
+            </div>
+            <script type="text/javascript">
+                function getCollect2(obj) {
+                    var artid ={$articleRes['article_id']};
+                    var obj = obj;
+                    $.ajax({
+                        type:"GET",
+                        dataType:"json",
+                        url:"__MODULE__/Ajax/getCollect",
+                        data:{mtype:1,id:artid},
+                        success:function (data) {
+                            if (data > 0) {
+                                showSuccessTip("收藏成功！");
+                                obj.children(".like_status").addClass("lm_liked").removeClass("lm_like");
+                            } else if (data == -1){
+                                showSuccessTip("请先登录！");
+                                obj.children(".like_status").addClass("lm_like").removeClass("lm_liked");
+                            }else if (data == -2){
+                                showSuccessTip("取消成功！");
+                                obj.children(".like_status").addClass("lm_like").removeClass("lm_liked");
+                            }
+                            else {
+                                obj.children(".like_status").addClass("lm_like").removeClass("lm_liked");
+                            }
+                            obj.parents(".per").attr("is_collect", 1)
+                        }
+                    });
+                }
+            </script>
+        </div>
+        <div class="content"><?php echo htmlspecialchars_decode($articleRes['article_desc'])?></div>
+
+        <div class="buttons">
+           <if condition="$articleRes['jieya'] eq 1">
+                 <span class="btnbox" style="float: left">
+             <a class="bigbtn demo yanshi" id="btn_demo" href="{$articleRes['demosrc']}" target="_blank" rel="nofollow">查看演示</a>
+              <span class="dlnum">下载资源：<strong class="orange"> <if condition="$articleRes['download'] eq 0" >0<else/>{$articleRes['download']}</if></strong>次</span>
+                </span>
+               <span class="btnbox">
+                <a class="bigbtn download notlogin xiazai" onclick="downloadzip('{$articleRes.article_id}','1')">下载资源</a>
+                <span class="dlcount">下载积分： <strong class="orange">{$articleRes['points']}</strong>积分</span>
+             </span>
+
+           <else/>
+               <span class="btnbox">
+                   <a class="bigbtn download notlogin xiazai" onclick="downloadzip('{$articleRes.article_id}','1')">下载资源</a>
+                     <span class="dlnum">下载资源：<strong class="orange"><if condition="$articleRes['download'] eq 0" >0<else/>{$articleRes['download']}</if></strong>次</span>
+                  <span class="dlcount">下载积分： <strong class="orange">{$articleRes['points']}</strong>积分</span>
+               </span>
+           </if>
+            <!--<div class="qrcode_box" id="qrcode_box" style="left: 401.983px; top: 932.333px; display: none;">-->
+                <!--<p>手机扫码访问：</p>-->
+                <!--<img src="http://www.sucaihuo.com/Box/qrcode?url=http://www.sucaihuo.com/jquery/31/3174/demo/">-->
+            <!--</div>-->
+
+        </div>
+        <script type="text/javascript">
+            function downloadzip(article_id,type){
+                $.ajax({
+                    type:'post',
+                    dataType:'json',
+                    url:"__CONTROLLER__/checkdown",
+                    data:{article_id:article_id,type:type},
+                    success:function(data){
+                        if(data==1){
+//                            alert('积分不足，请充值！');
+                            showSuccessTip('积分不足，请充值！');
+                            return false;
+                        }else if(data== -1){
+//                            alert('请先登录！');
+                            showSuccessTip('请先登录！');
+                            return false;
+                        }else{
+                            var form=$("<form>");//定义一个form表单
+                            form.attr('style','display:none');
+                            form.attr('target','');
+                            form.attr('method','post');
+                            form.attr('action',"__CONTROLLER__/downloadZip");
+                            var input1=$('<input>');
+                            input1.attr('type','hidden');
+                            input1.attr('name','article_id');
+                            input1.attr('value',article_id);
+                            var input2=$('<input>');
+                            input2.attr('type','hidden');
+                            input2.attr('name','type');
+                            input2.attr('value',type);
+                            form.append(input1);
+                            form.append(input2);
+                            $('body').append(form);
+                            form.submit();
+                        }
+                    }
+                });
+
+
+            }
+        </script>
+
+
+
+
+        <div class="detail_foot clearfix">
+            <div class="bshare">
+                <div class="bdsharebuttonbox">
+                    <a href="#" class="bds_more" data-cmd="more"></a>
+                    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+                    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+                    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+                    <a href="#" class="bds_renren" data-cmd="renren"></a>
+                    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+                </div>
+                <script>window._bd_share_config = {
+                    "common": {
+                        "bdSnsKey": {},
+                        "bdText": "",
+                        "bdMini": "2",
+                        "bdPic": "",
+                        "bdStyle": "0",
+                        "bdSize": "16"
+                    },
+                    "share": {},
+                    "image": {
+                        "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+                        "viewText": "分享到：",
+                        "viewSize": "16"
+                    },
+                    "selectShare": {
+                        "bdContainerClass": null,
+                        "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+                    }
+                };
+                with (document)
+                    0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+            </div>
+
+            <div class="tagged_with">
+                <span class="gray">标签：</span>
+
+                <volist name="tages" id="tages">
+                    <a target="_blank" class="button3 white" href="__CONTROLLER__/tagesArticle/tags/{$tages}">{$tages}</a>
+                </volist>
+
+            </div>
+            <div class="page_nav clearfix">
+                <div class="next_page" title="下一篇">
+                    <a href="__CONTROLLER__/article/article_id/{$next['article_id']}"> {$next['article_title']}</a>
+                </div>
+                <div class="pre_page" title="上一篇">
+                    <a href="__CONTROLLER__/article/article_id/{$prev['article_id']}">{$prev['article_title']}</a>
+                </div>
+
+
+            </div>
+            <!--<script type="text/javascript">-->
+            <!--/*760*90 横幅*/-->
+            <!--var cpro_id = "u2182156";-->
+            <!--</script>-->
+            <script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+
+            <div class="comments">
+                <div class="title">
+                    评论<span class="num_area">（<em class="comments_num" id="comments_num">{$commentnums['comment']}</em>）</span>
+                </div>
+
+                <div class="comment_send clearfix">
+                    <div class="comment_avatar">
+                <span class="userPic">
+
+                    <if condition="$userinfo['face50'] neq '' ">
+                    <img class="userPic avatar user_my_avatar" width="60" height="60" alt="头像"
+                         src="__ROOT__/{$userinfo['face50']}"/>
+                    <else/>
+                         <img class='userPic avatar user_my_avatar' width="60" height="60" src="__Images__/avatar.jpg"
+                              alt="头像">
+                        <!--<img class="round-image" width="50" height="50" alt="头像" src="__Images__/avatar.jpg "/>-->
+                </if>
+
+                </span>
+                        <font class="username">{$_SESSION['username']}</font>
+                    </div>
+                    <div class="comment_sendPart" id='reply_0'>
+                <textarea id="textareaComment" class="textarea_comment" name="content" autocomplete="off"
+                          data-default="发布评论" onblur="checkInputBlur($(this))" onfocus="checkInputFocus($(this));
+                        if ($(this).val() != '发布评论')
+                            $(this).css({'color': '#333'})">发布评论</textarea>
+                        <div class="btn_p clearfix">
+                            <span class="comment_tip" id="comment_tip_0" data-top="11" data-foot="36"></span>
+                            <button class="btn_subGrey btn" type="button"
+                                    onclick="subcomment('{$articleRes.article_id}', '1', 0)">提 交
+                            </button>
+                            <span class="emotion" tabindex="1" data-id='0'></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comment_wrap" id="comment_wrap">
+                    <ul class="comment_listBox">
+                        <if condition="$comment ">
+                            <volist name="comment" id="comment">
+                                <li class="comment_list clearfix" id="comment_{$comment['comment_id']}">
+                                    <div class="comment_avatar">
+                                <span class='userPic'>
+                                     <if condition="$comment['face50'] neq '' ">
+                                        <img class="userPic avatar user_my_avatar" width="36" height="36" alt="头像" src="__ROOT__/{$comment['face50']}"/>
+                                         <else/>
+                                         <img width="36" height="36" src="__Images__/avatar.jpg" alt="头像">
+                                     </if>
+
+                                </span>
+                                        <span class="grey"></span>
+                                    </div>
+                                    <div class="comment_conBox">
+                                        <div class="comment_avatar_time">
+                                            <div class="time">{$comment['time']|date="Y-m-d H:i:s",###}</div>
+                                            {$comment['nickname']}
+                                        </div>
+                                        <div class="comment_conWrap clearfix">
+                                            <div class="comment_action"><a class="reply" onclick="reply_btn('{$comment.comment_id}')">回复</a>
+                                            </div>
+                                            <div class="comment_con">{$comment['content']}</div>
+                                        </div>
+                                        <div id='reply_{$comment["comment_id"]}' class='reply_area'>
+                                            <textarea class="textarea_comment" name="content" autocomplete="off"></textarea>
+                                            <div class="btn_p clearfix">
+                                                <span class="comment_tip" id="comment_tip_{$comment['comment_id']}" data-top="4"  data-foot="29"></span>
+                                                <button class="btn_subGrey btn" onclick="subcomment('{$articleRes.article_id}', '1', '{$comment.comment_id}', 0)" type="button">提交
+                                                </button>
+                                                <span class="emotion" tabindex="1" data-id='{$comment["comment_id"]}'></span>
+                                            </div>
+                                        </div>
+                                        <div class="blockquote_wrap">
+                                            <if condition="$commentSecond">
+                                                <volist name="commentSecond" id="commentSecond">
+                                                    <if condition="$commentSecond['pid'] eq $comment['comment_id']">
+                                                        <blockquote class="comment_blockquote">
+                                                            <div class="comment_floor"></div>
+                                                            <div class="comment_conWrap clearfix">
+                                                                <div class="comment_con">
+                                                                    <a class="blue" target="_blank"  href="http://www.sucaihuo.com/space/uid/22668">
+                                                                        <span class="red">{$commentSecond['nickname']}</span>
+                                                                    </a> ：
+                                                                    <p>{$commentSecond['content']}<span style="float: right">{$commentSecond['time']|date="Y-m-d H:i:s",###}</span></p>
+                                                                </div>
+                                                                <div class="comment_action_sub">
+                                                                    <a class="reply" onclick="reply_btn('{$commentSecond.comment_id}')">回复</a>
+                                                                </div>
+                                                            </div>
+                                                            <div id="reply_{$commentSecond.comment_id}" class="reply_area">
+                                                                <textarea class="textarea_comment" autocomplete="off"  name="content"></textarea>
+                                                                <div class="btn_p clearfix">
+                                                                    <span id="comment_tip_{$commentSecond.comment_id}" class="comment_tip" data-foot="29" data-top="4"></span>
+                                                                    <button class="btn_subGrey btn" type="button"  onclick="subcomment('{$articleRes.article_id}', '1', '{$comment.comment_id}', '{$commentSecond.comment_id}')">提交 </button>
+                                                                    <span class="emotion" data-id="{$commentSecond.comment_id}" tabindex="{$commentSecond.comment_id}"></span>
+                                                                </div>
+                                                            </div>
+                                                        </blockquote>
+                                                        <!--三级评论-->
+
+                                                        <if condition="$commentRes">
+                                                            <volist name="commentRes" id="commentRes">
+                                                                <if condition="$commentRes['touid'] eq $commentSecond['comment_id']">
+                                                                    <blockquote class="comment_blockquote">
+                                                                        <div class="comment_floor"></div>
+                                                                        <div class="comment_conWrap clearfix">
+                                                                            <div class="comment_con">
+                                                                                <a href="http://www.sucaihuo.com/space/uid/5009" target="_blank" class="blue">{$commentRes.nickname}</a>
+                                                                                <p>回复 <a href="http://www.sucaihuo.com/space/uid/5009" target="_blank" class="blue">{$commentRes.tuser}：</a>{$commentRes.content}<span style="float: right">{$commentRes['time']|date="Y-m-d H:i:s",###}</span></p>
+
+                                                                            </div>
+                                                                            <div class="comment_action_sub" style="visibility: hidden;">
+                                                                                <a onclick="reply_btn('{$commentRes.comment_id}')" class="reply">回复</a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="reply_area" id="reply_{$commentRes.comment_id}">
+                                                                            <textarea name="content" autocomplete="off" class="textarea_comment"></textarea>
+                                                                            <div class="btn_p clearfix">
+                                                                                <span data-top="4" data-foot="29" class="comment_tip" id="comment_tip_{$commentRes.comment_id}"></span>
+                                                                                <button onclick="subcomment('{$articleRes.article_id}', '1', '{$commentRes.pid}', '{$commentRes.comment_id}')" type="button" class="btn_subGrey btn">提交</button>
+                                                                                <span tabindex="{$commentRes.comment_id}" data-id="{$commentRes.comment_id}" class="emotion"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </blockquote>
+                                                                </if>
+                                                            </volist>
+                                                        </if>
+                                                        <!--三级评论-->
+
+
+                                                    </if>
+                                                </volist>
+                                            </if>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </volist>
+                        </if>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="smileBoxOuter" id="smileBoxOuter" tabindex="2">
+            <ul class="smileBox">
+                <li><a href="javascript:void(0)" class="smile1" title="糗大了"></a></li>
+                <li><a href="javascript:void(0)" class="smile2" title="示爱"></a></li>
+                <li><a href="javascript:void(0)" class="smile3" title="晕"></a></li>
+                <li><a href="javascript:void(0)" class="smile4" title="酷"></a></li>
+                <li><a href="javascript:void(0)" class="smile5" title="流泪"></a></li>
+                <li><a href="javascript:void(0)" class="smile6" title="饿了"></a></li>
+                <li><a href="javascript:void(0)" class="smile7" title="闭嘴"></a></li>
+                <li><a href="javascript:void(0)" class="smile8" title="做鬼脸"></a></li>
+                <li><a href="javascript:void(0)" class="smile9" title="馋"></a></li>
+                <li><a href="javascript:void(0)" class="smile10" title="坏笑"></a></li>
+                <li><a href="javascript:void(0)" class="smile11" title="抓狂"></a></li>
+                <li><a href="javascript:void(0)" class="smile12" title="呵呵"></a></li>
+                <li><a href="javascript:void(0)" class="smile13" title="淡定"></a></li>
+                <li><a href="javascript:void(0)" class="smile14" title="冷汗"></a></li>
+                <li><a href="javascript:void(0)" class="smile15" title="色"></a></li>
+                <li><a href="javascript:void(0)" class="smile16" title="惊讶"></a></li>
+                <li><a href="javascript:void(0)" class="smile17" title="希望"></a></li>
+                <li><a href="javascript:void(0)" class="smile18" title="伤心"></a></li>
+                <li><a href="javascript:void(0)" class="smile19" title="微笑"></a></li>
+                <li><a href="javascript:void(0)" class="smile20" title="惊吓"></a></li>
+                <li><a href="javascript:void(0)" class="smile21" title="哈哈"></a></li>
+                <li><a href="javascript:void(0)" class="smile22" title="吃饭"></a></li>
+                <li><a href="javascript:void(0)" class="smile23" title="观察"></a></li>
+                <li><a href="javascript:void(0)" class="smile24" title="高兴"></a></li>
+                <li><a href="javascript:void(0)" class="smile25" title="皱眉"></a></li>
+                <li><a href="javascript:void(0)" class="smile26" title="大囧"></a></li>
+                <li><a href="javascript:void(0)" class="smile27" title="邪恶"></a></li>
+                <li><a href="javascript:void(0)" class="smile28" title="锁眉"></a></li>
+                <li><a href="javascript:void(0)" class="smile29" title="惊喜"></a></li>
+                <li><a href="javascript:void(0)" class="smile30" title="小怒"></a></li>
+                <li><a href="javascript:void(0)" class="smile31" title="无语"></a></li>
+                <li><a href="javascript:void(0)" class="smile32" title="傻笑"></a></li>
+                <li><a href="javascript:void(0)" class="smile33" title="黑线"></a></li>
+                <li><a href="javascript:void(0)" class="smile34" title="喜极而泣"></a></li>
+                <li><a href="javascript:void(0)" class="smile35" title="口水"></a></li>
+                <li><a href="javascript:void(0)" class="smile36" title="不说话"></a></li>
+                <li><a href="javascript:void(0)" class="smile37" title="抽烟"></a></li>
+                <li><a href="javascript:void(0)" class="smile38" title="汗"></a></li>
+                <li><a href="javascript:void(0)" class="smile39" title="尴尬"></a></li>
+                <li><a href="javascript:void(0)" class="smile40" title="小眼睛"></a></li>
+                <li><a href="javascript:void(0)" class="smile41" title="龇牙"></a></li>
+                <li><a href="javascript:void(0)" class="smile42" title="亲亲"></a></li>
+                <li><a href="javascript:void(0)" class="smile43" title="哭泣"></a></li>
+                <li><a href="javascript:void(0)" class="smile44" title="大吃一惊"></a></li>
+            </ul>
+            <ul class="smileBox" style="display:none;">
+                <li><a href="javascript:void(0)" class="smile46" title="不高兴"></a></li>
+                <li><a href="javascript:void(0)" class="smile47" title="得意"></a></li>
+                <li><a href="javascript:void(0)" class="smile48" title="阴脸"></a></li>
+                <li><a href="javascript:void(0)" class="smile49" title="装大款"></a></li>
+                <li><a href="javascript:void(0)" class="smile50" title="吐舌"></a></li>
+                <li><a href="javascript:void(0)" class="smile51" title="暗地观察"></a></li>
+                <li><a href="javascript:void(0)" class="smile52" title="吐血"></a></li>
+                <li><a href="javascript:void(0)" class="smile53" title="脸红"></a></li>
+                <li><a href="javascript:void(0)" class="smile54" title="肿包"></a></li>
+                <li><a href="javascript:void(0)" class="smile55" title="抠鼻"></a></li>
+                <li><a href="javascript:void(0)" class="smile56" title="赞一个"></a></li>
+                <li><a href="javascript:void(0)" class="smile57" title="中指"></a></li>
+                <li><a href="javascript:void(0)" class="smile58" title="期待"></a></li>
+                <li><a href="javascript:void(0)" class="smile59" title="倒地"></a></li>
+                <li><a href="javascript:void(0)" class="smile60" title="火冒三丈"></a></li>
+                <li><a href="javascript:void(0)" class="smile61" title="吐"></a></li>
+                <li><a href="javascript:void(0)" class="smile62" title="喷水"></a></li>
+                <li><a href="javascript:void(0)" class="smile63" title="喷血"></a></li>
+                <li><a href="javascript:void(0)" class="smile64" title="蜡烛"></a></li>
+                <li><a href="javascript:void(0)" class="smile65" title="想一想"></a></li>
+                <li><a href="javascript:void(0)" class="smile66" title="认真听讲"></a></li>
+                <li><a href="javascript:void(0)" class="smile67" title="不好意思"></a></li>
+                <li><a href="javascript:void(0)" class="smile68" title="欢呼"></a></li>
+                <li><a href="javascript:void(0)" class="smile69" title="便便"></a></li>
+                <li><a href="javascript:void(0)" class="smile70" title="鼓掌"></a></li>
+                <li><a href="javascript:void(0)" class="smile71" title="深思"></a></li>
+                <li><a href="javascript:void(0)" class="smile72" title="害羞"></a></li>
+                <li><a href="javascript:void(0)" class="smile73" title="苦恼"></a></li>
+                <li><a href="javascript:void(0)" class="smile74" title="长草"></a></li>
+                <li><a href="javascript:void(0)" class="smile75" title="无所谓"></a></li>
+                <li><a href="javascript:void(0)" class="smile76" title="咽气"></a></li>
+                <li><a href="javascript:void(0)" class="smile77" title="投降"></a></li>
+                <li><a href="javascript:void(0)" class="smile78" title="没看见"></a></li>
+                <li><a href="javascript:void(0)" class="smile79" title="击掌"></a></li>
+                <li><a href="javascript:void(0)" class="smile80" title="献黄瓜"></a></li>
+                <li><a href="javascript:void(0)" class="smile81" title="献花"></a></li>
+                <li><a href="javascript:void(0)" class="smile82" title="撞墙"></a></li>
+                <li><a href="javascript:void(0)" class="smile83" title="中刀"></a></li>
+                <li><a href="javascript:void(0)" class="smile84" title="中枪"></a></li>
+            </ul>
+            <div class="smilePage">
+                <a href="javascript:void(0)" class="current">1</a>
+                <a href="javascript:void(0)">2</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<include file="Common/footer"/>
+
+
+<div id="windown_box" class="modal fade">
+    <div class="pop_title">
+        <div class="pop_name">登录</div>
+        <i class="pop_close" onclick="$('#windown_box').modal('hide')"></i>
+    </div>
+    <div class="pop_content">
+        <div class="form_item">
+            <div class="item_tip">用户名/邮箱</div>
+            <input id="email" name="email" class="form_input" type="text" autocomplete="off" tabindex="1" value=""
+                   onblur="blurInputLoginBox($(this))" onfocus="focusInputLoginBox($(this))"/>
+        </div>
+        <div class="form_item">
+            <div class="item_tip">密码</div>
+            <input name="pwd" id="pwd" class="form_input" type="password" tabindex="2" value=""
+                   onblur="blurInputLoginBox($(this))" onfocus="focusInputLoginBox($(this))"/>
+        </div>
+        <div class="captchaBox">
+            <div class="two_weeks">
+                <input id="rememberme" class="ckeckBox" type="checkbox" name="rememberme">
+                <label for="rememberme">两周内免登录</label>
+                <a href="http://www.sucaihuo.com/reg.html" target="_blank" class="loginbox_reg">免费注册</a>
+            </div>
+        </div>
+        <p class="notice_error"></p>
+        <input id="btn_login" class="btn" type="button" onclick="sublogin()" tabindex="4" value="登  录">
+        <a class="a_underline" href="http://www.sucaihuo.com/forget.html">忘记密码？</a>
+        <div class="co_login" style="margin:20px 0 0">
+            联合登录
+            <a class="a_underline" href="http://www.sucaihuo.com/Index/login/type/qq.html">腾讯QQ</a>
+            <a class="a_underline" href="http://www.sucaihuo.com/Index/login/type/sina.html">新浪微博</a>
+            <a class="a_underline" href="http://www.sucaihuo.com/Index/login/type/renren.html">人人网</a>
+            绑定送<span class="red">200</span>积分
+        </div>
+    </div>
+</div>
+<script src="__Css__/jquery.js" type="text/javascript"></script>
+<script src="__Css__/common_version1.js" type="text/javascript"></script>
+
+<!--[if !IE]><!-->
+<script src="__Css__/jquery.chili-2.2.js" type="text/javascript"></script>
+<script src="__Css__/recipes.js" type="text/javascript"></script>
+<!--<![endif]-->
+<div class="mmsg-box mmsg-box-info" id='msg-box' style="margin-top: -23.5px; margin-left: -96.5px;">
+    <div class="mmsg-content">
+        <i class="mmsg-icon"></i>
+        <p id='msg-box-content'></p>
+    </div>
+    <div class="mmsg-background"></div>
+</div>
+<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?b5ae3f71dfe5f06a9dd4dc55087f27d1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s)
+    })();
+    //var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258090369'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258090369' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>
