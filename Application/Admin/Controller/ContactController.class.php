@@ -94,4 +94,9 @@ class ContactController extends CommonController
         }
     }
 
+    public function aa()
+    {
+
+    }
+
 }
