@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理系统</title>
+    <meta name="author" content="DeathGhost"/>
+    <link rel="stylesheet" type="text/css" href="__Css__/style.css">
+    <!--[if lt IE 9]>
+    <script src="__Js__/html5.js"></script>
+    <![endif]-->
+    <script src="__Js__/jquery.js"></script>
+    <script src="__Js__/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+
+        (function ($) {
+            $(window).load(function () {
+
+                $("a[rel='load-content']").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr("href");
+                    $.get(url, function (data) {
+                        $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                        //scroll-to appended content
+                        $(".content").mCustomScrollbar("scrollTo", "h2:last");
+                    });
+                });
+
+                $(".content").delegate("a[href='top']", "click", function (e) {
+                    e.preventDefault();
+                    $(".content").mCustomScrollbar("scrollTo", $(this).attr("href"));
+                });
+
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+<!--header-->
+<include file="Common/head"/>
+<!--aside nav-->
+<!--aside nav-->
+<include file="Common/left"/>
+
+<section class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">广告列表</h2>
+            <a href="__MODULE__/Ad/ad_add" class="fr top_rt_btn add_icon">添加广告</a>
+        </div>
+        <form action="" method="get">
+        <section class="mtb">
+            <!--<select class="select" name="1">-->
+            <!--<volist name="cateres" id="vo">-->
+                <!--<option  value="{$vo['cate_id']}"  <if condition="$vo['cate_type'] neq 1">style="display:none;" </if> ><?php echo str_repeat("-",$vo["level"]*3);?>{$vo['cate_name']}</option>-->
+            <!--</volist>-->
+            <!--</select>-->
+
+            <input type="text" value="" name="article_title" class="textbox textbox_225" placeholder="输入产品关键词或产品货号..."/>
+            <input type="submit" value="查询" class="group_btn"/>
+        </section>
+        </form>
+        <form action="__CONTROLLER__/catesort" method="post">
+            <table class="table">
+                <tr>
+                    <th style="width: 50px">广告ID</th>
+                    <th>广告名称</th>
+                    <th>广告位置</th>
+                    <th>广告图片</th>
+                    <th>时间</th>
+                    <th>操作</th>
+                </tr>
+
+                <volist name="list" id="vo">
+                    <tr>
+                        <td class="center">{$vo['id']}</td>
+                        <td class="center">{$vo['ad_name']}</td>
+                        <td class="center">{$vo['position_name']}</td>
+                        <!--<td class="center">{$vo['type_name']}</td>-->
+                        <td class="center">
+                            <if condition="$vo['ad_img'] neq ''">
+                                <img src="localhost/__ROOT__{$vo['ad_img']}" width="50" height="50"/>
+                                <else/>
+                                暂无图片
+                            </if>
+                        </td>
+                        <td>{$vo['ad_time']}</td>
+                        <td class="center">
+                            <a href="" title="预览" class="link_icon" target="_blank">&#118;</a>
+                            <a href="__CONTROLLER__/ad_add/id/{$vo['id']}" title="编辑"
+                               class="link_icon">&#101;</a>
+                            <a href="__CONTROLLER__/ad_del/id/{$vo['id']}"
+                               onclick="return confirm('您确定要删除吗?');" title="删除" class="link_icon">&#100;</a>
+                        </td>
+                    </tr>
+                </volist>
+            </table>
+        </form>
+        <aside class="paging">
+            {$page}
+        </aside>
+    </div>
+</section>
+</body>
+</html>
