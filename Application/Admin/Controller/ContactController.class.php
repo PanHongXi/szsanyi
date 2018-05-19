@@ -93,5 +93,4 @@ class ContactController extends CommonController
             $this->error('删除失败！', U('Contact/lst'));
         }
     }
-
 }
