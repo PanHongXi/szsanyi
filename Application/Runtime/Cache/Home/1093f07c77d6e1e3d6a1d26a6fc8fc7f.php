@@ -23,10 +23,10 @@
                 <a id="msg_notify" class="msg_notify" href="http://www.sucaihuo.com/Member/message.html"></a>
             </li>
             <li class="box_color nav_home">
-                <span><a href="/sz/index.php/Home/Member/member_info">个人中心</a></span><b class="icon"></b>
+                <span><a href="/szsanyi/index.php/Home/Member/member_info">个人中心</a></span><b class="icon"></b>
                 <ul>
-                    <li><a href="/sz/index.php/Home/Member/member_info"><span>我的主页</span></a></li>
-                    <li><a href="/sz/index.php/Home/Userinfo/user_info/user_id/<?php echo ($_SESSION['user_id']); ?>"><span>个人设置</span></a></li>
+                    <li><a href="/szsanyi/index.php/Home/Member/member_info"><span>我的主页</span></a></li>
+                    <li><a href="/szsanyi/index.php/Home/Userinfo/user_info/user_id/<?php echo ($_SESSION['user_id']); ?>"><span>个人设置</span></a></li>
                     <li><a href="http://www.sucaihuo.com/Member/downloads.html"><span>下载记录</span></a></li>
                     <li><a href="http://www.sucaihuo.com/Member/collects.html"><span>我的收藏</span></a></li>
                     <li><a href="http://www.sucaihuo.com/Member/sign.html"><span>我的签到</span></a></li>
@@ -69,12 +69,12 @@
                 <li class="tg-line icon"></li>
                 <li class="no-hover nologin">
                 <span>
-                    <a href="/sz/index.php/Home/Account/register">注册</a>
+                    <a href="/szsanyi/index.php/Home/Account/register">注册</a>
                 </span>
                 </li>
                 <li class="box_color nav_home" id="nav_login">
                         <span>
-                            <a href="/sz/index.php/Home/Account/login" class="sn_login">登录</a>
+                            <a href="/szsanyi/index.php/Home/Account/login" class="sn_login">登录</a>
                         </span>
                     <b class="icon"></b>
                     <ul>
@@ -93,14 +93,14 @@
                 <?php else: ?>
                 <li class="no-hover  haslogin">
                 <span>
-                    <a href="/sz/index.php/Home/Member/member_info/user_id/<?php echo ($_SESSION['user_id']); ?>">
+                    <a href="/szsanyi/index.php/Home/Member/member_info/user_id/<?php echo ($_SESSION['user_id']); ?>">
                         <font  id="head_username" class="sn_login username"><?php echo ($_SESSION['username']); ?></font>
                         <!--<?php echo ($_SESSION['username']); ?>-->
                         <!--<?php echo ($_SESSION['username']['']); ?>-->
                     </a>
                 </span>
                 <li class="no-hover  haslogin">
-                    <span><a href="/sz/index.php/Home/Account/loginOut">退出</a></span>
+                    <span><a href="/szsanyi/index.php/Home/Account/loginOut">退出</a></span>
                 </li><?php endif; ?>
         </ul>
     </div>
@@ -144,8 +144,8 @@
 </div>
 <div id="nav" class="nav">
     <div class="nav_main clearfix">
-        <a href="/sz/index.php" class="menu <?php if( $curr): ?>current<?php endif; ?>">首 页</a>
-        <?php if(is_array($cateRes)): $i = 0; $__LIST__ = $cateRes;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><a href="/sz/index.php/Home/<?php if( $vo['cate_type'] == 0): ?>Lst<?php elseif($vo['cate_type'] == 1): ?>Page<?php else: ?>Topic<?php endif; ?>/index/cate_id/<?php echo ($vo['cate_id']); ?>" class="menu <?php if($current == $vo['cate_id'] || $topId == $vo['cate_id']): ?>current<?php endif; ?>"><?php echo ($vo['cate_name']); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
+        <a href="/szsanyi/index.php" class="menu <?php if( $curr): ?>current<?php endif; ?>">首 页</a>
+        <?php if(is_array($cateRes)): $i = 0; $__LIST__ = $cateRes;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><a href="/szsanyi/index.php/Home/<?php if( $vo['cate_type'] == 0): ?>Lst<?php elseif($vo['cate_type'] == 1): ?>Page<?php else: ?>Topic<?php endif; ?>/index/cate_id/<?php echo ($vo['cate_id']); ?>" class="menu <?php if($current == $vo['cate_id'] || $topId == $vo['cate_id']): ?>current<?php endif; ?>"><?php echo ($vo['cate_name']); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
         <span class="icon_hot"></span>
     </div>
 </div>
@@ -154,17 +154,17 @@
 <div class="wenda clearfix w">
     <div class="wenda-main">
         <ul class="wenda-tab clearfix">
-            <li  <?php if(strstr($scateid,',')):?>class='tabactive'<?php endif;?> ><a href="/sz/index.php/Home/Topic/index/cate_id/<?php echo ($current); ?>">全部话题</a></li>
+            <li  <?php if(strstr($scateid,',')):?>class='tabactive'<?php endif;?> ><a href="/szsanyi/index.php/Home/Topic/index/cate_id/<?php echo ($current); ?>">全部话题</a></li>
             <?php if(is_array($scateres)): $i = 0; $__LIST__ = $scateres;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$scateres): $mod = ($i % 2 );++$i;?><li <?php if($scateres['cate_id'] == $scateid): ?>class="tabactive"<?php endif; ?> >
-                <a href="/sz/index.php/Home/Topic/index/cate_id/<?php echo ($current); ?>/scateid/<?php echo ($scateres['cate_id']); ?>/state/<?php echo ($state); ?>"><?php echo ($scateres['cate_name']); ?></a>
+                <a href="/szsanyi/index.php/Home/Topic/index/cate_id/<?php echo ($current); ?>/scateid/<?php echo ($scateres['cate_id']); ?>/state/<?php echo ($state); ?>"><?php echo ($scateres['cate_name']); ?></a>
                 </li><?php endforeach; endif; else: echo "" ;endif; ?>
 
         </ul>
 
         <div class="newpost clearfix">
-            <a class="quealltab <?php if($state == "" ): ?>onactive<?php endif; ?> " href="/sz/index.php/Home/Topic/index/cate_id/<?php echo ($current); ?>/<?php if(!strstr($scateid,',')):?>scateid/<?php echo ($scateid); endif;?>">最新</a>
-            <a class="quealltab <?php if($state == "hot" ): ?>onactive<?php endif; ?> " href="/sz/index.php/Home/Topic/index/cate_id/<?php echo ($current); ?>/<?php if(!strstr($scateid,',')):?>scateid/<?php echo ($scateid); endif;?>/state/hot">热门</a>
-            <a class="quealltab <?php if($state == "wait" ): ?>onactive<?php endif; ?> " href="/sz/index.php/Home/Topic/index/cate_id/<?php echo ($current); ?>/<?php if(!strstr($scateid,',')):?>scateid/<?php echo ($scateid); endif;?>/state/wait">等待回复</a>
+            <a class="quealltab <?php if($state == "" ): ?>onactive<?php endif; ?> " href="/szsanyi/index.php/Home/Topic/index/cate_id/<?php echo ($current); ?>/<?php if(!strstr($scateid,',')):?>scateid/<?php echo ($scateid); endif;?>">最新</a>
+            <a class="quealltab <?php if($state == "hot" ): ?>onactive<?php endif; ?> " href="/szsanyi/index.php/Home/Topic/index/cate_id/<?php echo ($current); ?>/<?php if(!strstr($scateid,',')):?>scateid/<?php echo ($scateid); endif;?>/state/hot">热门</a>
+            <a class="quealltab <?php if($state == "wait" ): ?>onactive<?php endif; ?> " href="/szsanyi/index.php/Home/Topic/index/cate_id/<?php echo ($current); ?>/<?php if(!strstr($scateid,',')):?>scateid/<?php echo ($scateid); endif;?>/state/wait">等待回复</a>
         </div>
         <!--左侧列表内容-->
         <div class="wenda-list">
@@ -174,7 +174,7 @@
                 <div class="wenda-listcon clearfix">
                 <div class="headslider">
                     <a title="<?php echo $v['userinfo']['nickname'] ;?>" target="_blank" class="wenda-head" href="">
-                        <?php if($v['userinfo']['face50'] != ''): ?><img width="40" height="40" src="/sz<?php echo $v['userinfo']['face50'] ;?>" alt='<?php echo $v["userinfo"]["nickname"] ;?>'/>
+                        <?php if($v['userinfo']['face50'] != ''): ?><img width="40" height="40" src="/szsanyi<?php echo $v['userinfo']['face50'] ;?>" alt='<?php echo $v["userinfo"]["nickname"] ;?>'/>
                         <?php else: ?>
                             <img width="40" height="40" src="/sucai/Public/HOME/Images/avatar.jpg" alt='<?php echo $v["userinfo"]["nickname"] ;?>'/><?php endif; ?>
                     </a>
@@ -204,7 +204,7 @@
                           <?php else: ?>
                             <img style="width: 15px;height: 15px;font-size: 16px;position: absolute;top: 4px;" src="/sucai/Public/HOME/Images/luse.jpg" alt=""/><?php endif; ?>
                         <div class="wendatitlecon">
-                            <a class="wendatitle"  href="/sz/index.php/Home/Topicart/topicArt/topic_id/<?php echo $v['topic_id'] ;?>/cate_id/<?php echo $v['cate_id'] ;?>"><?php echo $v['topic_title'] ;?></a>
+                            <a class="wendatitle"  href="/szsanyi/index.php/Home/Topicart/topicArt/topic_id/<?php echo $v['topic_id'] ;?>/cate_id/<?php echo $v['cate_id'] ;?>"><?php echo $v['topic_title'] ;?></a>
                         </div>
                     </h2>
 
@@ -214,7 +214,7 @@
                         <img style="width: 15px;height: 15px;font-size: 16px;position: absolute;top: 4px;" src="/sucai/Public/HOME/Images/xinxi.jpg" alt=""/>
                         <div class="l replydes">
                             <span class="replysign praise">[最新回答]</span>
-                            <?php if($v['userinfo']['face50'] != ''): ?><img width="20" height="20" src="/sz<?php echo $v['commenter']['face50'] ;?>" alt='头像'>
+                            <?php if($v['userinfo']['face50'] != ''): ?><img width="20" height="20" src="/szsanyi<?php echo $v['commenter']['face50'] ;?>" alt='头像'>
                                 <?php else: ?>
                                 <img width="20" height="20" src="/sucai/Public/HOME/Images/avatar.jpg" alt='头像'><?php endif; ?>
                             <?php echo $v['commenter']['nickname'];?>:
@@ -231,7 +231,7 @@
                             <?php
  if($v['keywords']): $arr =array_filter(explode(',',$v['keywords'])); foreach($arr as $k1=>$v1 ) : ?>
 
-                            <a target="_blank" class="list-tag" href="/sz/index.php/Home/Topic/tagsArr/cate_id/<?php echo $_GET['cate_id'];?>/tags/<?php echo ($v1); ?>"><?php  echo $v1 ;?></a>
+                            <a target="_blank" class="list-tag" href="/szsanyi/index.php/Home/Topic/tagsArr/cate_id/<?php echo $_GET['cate_id'];?>/tags/<?php echo ($v1); ?>"><?php  echo $v1 ;?></a>
                             <?php endforeach; endif ;?>
                         </div>
 
@@ -250,13 +250,13 @@
     <div class="wenda-slider">
         <!-- pub new ques -->
         <div class="newques-container">
-            <a  id="js-newques" class="newques-btn" href="/sz/index.php/Home/Topic/addTopic/cate_id/<?php echo ($current); ?>"><i class="icon-addques"></i>发新话题</a>
+            <a  id="js-newques" class="newques-btn" href="/szsanyi/index.php/Home/Topic/addTopic/cate_id/<?php echo ($current); ?>"><i class="icon-addques"></i>发新话题</a>
         </div>
 
         <div class="panel wenda-form clearfix">
             <div class="panel-body clearfix">
 
-                <?php if(is_array($tagsRes)): $i = 0; $__LIST__ = $tagsRes;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$tagsRes): $mod = ($i % 2 );++$i;?><a class="hot-label"   href="/sz/index.php/Home/Topic/tagsArr/cate_id/<?php echo $_GET['cate_id'];?>/tags/<?php echo ($tagsRes); ?>" style="margin:0 6px 10px 0"><?php echo ($tagsRes); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
+                <?php if(is_array($tagsRes)): $i = 0; $__LIST__ = $tagsRes;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$tagsRes): $mod = ($i % 2 );++$i;?><a class="hot-label"   href="/szsanyi/index.php/Home/Topic/tagsArr/cate_id/<?php echo $_GET['cate_id'];?>/tags/<?php echo ($tagsRes); ?>" style="margin:0 6px 10px 0"><?php echo ($tagsRes); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
             </div>
         </div>
         <div class="panel hot">
@@ -266,7 +266,7 @@
             <div class="panel-body clearfix">
                 <ul class="weekly-hot">
                    <?php foreach($topicWeek as $k => $v) : ?>
-                    <li <?php if($k == 0){echo 'class="padtop"';} ;?> ><em class="hoticon hot<?php echo $k+1;?>">热</em><a class="hottalk" target="" href="/sz/index.php/Home/Topicart/topicart/topic_id/<?php echo $v['topic_id']?>/cate_id/<?php echo $v['cate_id']?>"><?php echo mb_substr($v['topic_title'],0,10,'utf-8'); ;?></a><i class="rankingnum"><?php echo $v['comment']?><br>回答</i></li>
+                    <li <?php if($k == 0){echo 'class="padtop"';} ;?> ><em class="hoticon hot<?php echo $k+1;?>">热</em><a class="hottalk" target="" href="/szsanyi/index.php/Home/Topicart/topicart/topic_id/<?php echo $v['topic_id']?>/cate_id/<?php echo $v['cate_id']?>"><?php echo mb_substr($v['topic_title'],0,10,'utf-8'); ;?></a><i class="rankingnum"><?php echo $v['comment']?><br>回答</i></li>
                   <?php endforeach ;?>
                 </ul>
             </div>

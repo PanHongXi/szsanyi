@@ -33,34 +33,6 @@
             });
         })(jQuery);
     </script>
-    <script type="text/javascript">
-        $("#demo3").click(function () {
-            popTipShow.confirm('弹窗标题', '自定义弹窗内容，居左对齐显示，告知需要确认的信息等', ['确 定', '取 消'],
-                function (e) {
-                    //callback 处理按钮事件
-                    var button = $(e.target).attr('class');
-                    if (button == 'ok') {
-                        //按下确定按钮执行的操作
-                        //todo ....
-                        this.hide();
-                        setTimeout(function () {
-                            webToast("操作成功", "top", 2000);
-                        }, 300);
-                    }
-                    if (button == 'cancel') {
-                        //按下取消按钮执行的操作
-                        //todo ....
-                        this.hide();
-                        setTimeout(function () {
-                            webToast("您选择“取消”了", "bottom", 2000);
-                        }, 300);
-                    }
-                }
-            );
-        });
-
-
-    </script>
 </head>
 <body>
 <!--header-->
@@ -186,30 +158,53 @@
 <section class="rt_wrap content mCustomScrollbar">
     <div class="rt_content">
         <div class="page_title">
-            <h2 class="fl">属性列表</h2>
-            <a href="/szsanyi/index.php/Admin/Attrs/addValue" class="fr top_rt_btn add_icon">添加属性</a>
+            <h2 class="fl">广告列表</h2>
+            <a href="/szsanyi/index.php/Admin/Ad/ad_add" class="fr top_rt_btn add_icon">添加广告</a>
         </div>
-        <table class="table">
-            <tr>
-                <th style="width: 60px">属性Id</th>
-                <th>属性名称</th>
-                <th style="width: 360px">属性值</th>
-                <th>所属类型</th>
-                <th>添加时间</th>
-                <th>操作</th>
-            </tr>
-            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><tr>
-                    <td class="center"><?php echo ($list['attr_id']); ?></td>
-                    <td><?php echo ($list['attr_name']); ?></td>
-                    <td><?php echo ($list['attr_value']); ?></td>
-                    <td><?php echo ($list['type_name']); ?></td>
-                    <td><?php echo (date('Y-m-d H:i:s',$list['addtime'])); ?></td>
-                    <td class="center">
-                        <a href="/szsanyi/index.php/Admin/Attrs/editAttr/attr_id/<?php echo ($list['attr_id']); ?>" title="编辑" class="link_icon">&#101;</a>
-                        <a href="/szsanyi/index.php/Admin/Attrs/delAttr/attr_id/<?php echo ($list['attr_id']); ?>" onclick="return confirm('您确定要删除吗？');" title="删除" class="link_icon  twitter" id="demo3">&#100;</a>
-                    </td>
-                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-        </table>
+        <form action="" method="get">
+        <section class="mtb">
+            <!--<select class="select" name="1">-->
+            <!--<?php if(is_array($cateres)): $i = 0; $__LIST__ = $cateres;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>-->
+                <!--<option  value="<?php echo ($vo['cate_id']); ?>"  <?php if($vo['cate_type'] != 1): ?>style="display:none;"<?php endif; ?> ><?php echo str_repeat("-",$vo["level"]*3); echo ($vo['cate_name']); ?></option>-->
+            <!--<?php endforeach; endif; else: echo "" ;endif; ?>-->
+            <!--</select>-->
+
+            <input type="text" value="" name="article_title" class="textbox textbox_225" placeholder="输入产品关键词或产品货号..."/>
+            <input type="submit" value="查询" class="group_btn"/>
+        </section>
+        </form>
+        <form action="/szsanyi/index.php/Admin/Ad/catesort" method="post">
+            <table class="table">
+                <tr>
+                    <th style="width: 50px">广告ID</th>
+                    <th>广告名称</th>
+                    <th>广告位置</th>
+                    <th>广告图片</th>
+                    <th>时间</th>
+                    <th>操作</th>
+                </tr>
+
+                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                        <td class="center"><?php echo ($vo['id']); ?></td>
+                        <td class="center"><?php echo ($vo['ad_name']); ?></td>
+                        <td class="center"><?php echo ($vo['position_name']); ?></td>
+                        <!--<td class="center"><?php echo ($vo['type_name']); ?></td>-->
+                        <td class="center">
+                            <?php if($vo['ad_img'] != ''): ?><img src="/szsanyi<?php echo ($vo['ad_img']); ?>" width="50" height="50"/>
+                                <?php else: ?>
+                                暂无图片<?php endif; ?>
+                        </td>
+                        <td><?php echo ($vo['ad_time']); ?></td>
+                        <td class="center">
+                            <a href="" title="预览" class="link_icon" target="_blank">&#118;</a>
+                            <a href="/szsanyi/index.php/Admin/Ad/ad_add/id/<?php echo ($vo['id']); ?>" title="编辑"
+                               class="link_icon">&#101;</a>
+                            <a href="/szsanyi/index.php/Admin/Ad/ad_del/id/<?php echo ($vo['id']); ?>"
+                               onclick="return confirm('您确定要删除吗?');" title="删除" class="link_icon">&#100;</a>
+                        </td>
+                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+            </table>
+        </form>
         <aside class="paging">
             <?php echo ($page); ?>
         </aside>

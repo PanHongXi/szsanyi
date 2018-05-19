@@ -43,7 +43,7 @@
         <li><a href="#" class="clear_icon">清除缓存</a></li>
         <li><a href="#" class="admin_icon">DeathGhost</a></li>
         <li><a href="#" class="set_icon">账号设置</a></li>
-        <li><a href="/sz/index.php/Admin/Admin/loginOut" onclick="return confirm('您确定要退出吗？');" class="quit_icon">安全退出</a></li>
+        <li><a href="/szsanyi/index.php/Admin/Admin/loginOut" onclick="return confirm('您确定要退出吗？');" class="quit_icon">安全退出</a></li>
     </ul>
 </header>
 <!--aside nav-->
@@ -55,46 +55,46 @@
             <dl>
                 <dt>管理员管理</dt>
                 <!--当前链接则添加class:active-->
-                <dd><a href="/sz/index.php/Admin/Admin/adminlist" class="">管理员列表</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Admin/adminlist" class="">管理员列表</a></dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>类型管理</dt>
                 <!--当前链接则添加class:active-->
-                <dd><a href="/sz/index.php/Admin/Attrtype/typeList" class="">类型列表</a></dd>
-                <dd><a href="/sz/index.php/Admin/Attrs/attrValue" class="">属性列表</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Attrtype/typeList" class="">类型列表</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Attrs/attrValue" class="">属性列表</a></dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>常用操作</dt>
                 <!--当前链接则添加class:active-->
-                <dd><a href="/sz/index.php/Admin/Cate/catelist" class="actve">栏目管理</a></dd>
-                <dd><a href="/sz/index.php/Admin/Article/article_list">文章管理</a></dd>
-                <dd><a href="/sz/index.php/Admin/Topic/topic_lst">话题管理</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Cate/catelist" class="actve">栏目管理</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Article/article_list">文章管理</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Topic/topic_lst">话题管理</a></dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>网站设置</dt>
-                <dd><a href="/sz/index.php/Admin/System/sy_list">系统设置</a></dd>
-                <dd><a href="/sz/index.php/Admin/Brief/lst">简介荣誉</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/System/sy_list">系统设置</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Brief/lst">简介荣誉</a></dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>文章管理</dt>
-                <dd><a href="/sz/index.php/Admin/Articlestype/lstType">文章类型</a></dd>
-                <dd><a href="/sz/index.php/Admin/Articles/lst">文章列表</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Articlestype/lstType">文章类型</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Articles/lst">文章列表</a></dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>其他</dt>
-                <dd><a href="/sz/index.php/Admin/Link/linkList">友情链接</a></dd>
-                <dd><a href="/sz/index.php/Admin/Contact/lst">联系厂家</a></dd>
-                <dd><a href="/sz/index.php/Admin/Articles/lst">留言信息</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Link/linkList">友情链接</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Contact/lst">联系厂家</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Articles/lst">留言信息</a></dd>
             </dl>
         </li>
         <li>
@@ -152,9 +152,9 @@
     <div class="rt_content">
         <div class="page_title">
             <h2 class="fl">友情链接</h2>
-            <a href="/sz/index.php/Admin/Link/linkAdd" class="fr top_rt_btn add_icon">添加链接</a>
+            <a href="/szsanyi/index.php/Admin/Link/linkAdd" class="fr top_rt_btn add_icon">添加链接</a>
         </div>
-        <form action="/sz/index.php/Admin/Link/catesort" method="post">
+        <form action="/szsanyi/index.php/Admin/Link/catesort" method="post">
             <table class="table">
                 <tr>
                     <th style="width: 50px">链接ID</th>
@@ -170,7 +170,7 @@
                         <td class="center"><?php echo ($vo['id']); ?></td>
                         <td class="center"><a target="_blank" href="<?php echo ($vo['link_url']); ?>"><?php echo ($vo['link_title']); ?></a></td>
                         <td class="center">
-                            <?php if($vo['Link_pic'] != ''): ?><a target="_blank" href="<?php echo ($vo['link_url']); ?>"> <img src="/sz<?php echo ($vo['Link_pic']); ?>" width="50" height="50"/></a>
+                            <?php if($vo['Link_pic'] != ''): ?><a target="_blank" href="<?php echo ($vo['link_url']); ?>"> <img src="/szsanyi<?php echo ($vo['Link_pic']); ?>" width="50" height="50"/></a>
                                 <?php else: ?>
                                 暂无图片<?php endif; ?>
                         </td>
@@ -182,9 +182,9 @@
                         </td>
                         <td class="center"><?php echo (date("Y-m-d H:i",$vo['addtime'])); ?></td>
                         <td class="center">
-                            <a href="/sz/index.php/Admin/Link/linkEdit/id/<?php echo ($vo['id']); ?>" title="编辑"
+                            <a href="/szsanyi/index.php/Admin/Link/linkEdit/id/<?php echo ($vo['id']); ?>" title="编辑"
                                class="link_icon">&#101;</a>
-                            <a href="/sz/index.php/Admin/Link/linkDel/id/<?php echo ($vo['id']); ?>"
+                            <a href="/szsanyi/index.php/Admin/Link/linkDel/id/<?php echo ($vo['id']); ?>"
                                onclick="return confirm('您确定要删除吗?');" title="删除" class="link_icon">&#100;</a>
                         </td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>

@@ -5,46 +5,53 @@
             <dl>
                 <dt>管理员管理</dt>
                 <!--当前链接则添加class:active-->
-                <dd><a href="__MODULE__/Admin/adminlist" class="">管理员列表</a></dd>
+                <dd><a <if condition="$action eq 'adminlist'">class="active"</if> href="__MODULE__/Admin/adminlist" class="">管理员列表</a></dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>类型管理</dt>
                 <!--当前链接则添加class:active-->
-                <dd><a href="__MODULE__/Attrtype/typeList" class="">类型列表</a></dd>
-                <dd><a href="__MODULE__/Attrs/attrValue" class="">属性列表</a></dd>
+                <dd><a href="__MODULE__/Attrtype/typeList" <if condition="$action eq 'typeList'">class="active"</if>>类型列表</a></dd>
+                <dd><a href="__MODULE__/Attrs/attrValue" <if condition="$action eq 'attrValue'">class="active"</if>>属性列表</a></dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>常用操作</dt>
                 <!--当前链接则添加class:active-->
-                <dd><a href="__MODULE__/Cate/catelist" class="actve">栏目管理</a></dd>
-                <dd><a href="__MODULE__/Article/article_list">文章管理</a></dd>
-                <dd><a href="__MODULE__/Topic/topic_lst">话题管理</a></dd>
+                <dd><a href="__MODULE__/Cate/catelist" <if condition="$action eq 'catelist'">class="active"</if>>栏目管理</a></dd>
+                <dd><a href="__MODULE__/Article/article_list" <if condition="$action eq 'article_list'">class="active"</if>>文章管理</a></dd>
+                <dd><a href="__MODULE__/Topic/topic_lst" <if condition="$action eq 'topic_lst'">class="active"</if>>话题管理</a></dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>网站设置</dt>
-                <dd><a href="__MODULE__/System/sy_list">系统设置</a></dd>
-                <dd><a href="__MODULE__/Brief/lst">简介荣誉</a></dd>
+                <dd><a href="__MODULE__/System/sy_list" <if condition="$action eq 'sy_list'">class="active"</if>>系统设置</a></dd>
+                <dd><a href="__MODULE__/Brief/lsts" <if condition="$action eq 'lsts'">class="active"</if>>简介荣誉</a></dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>文章管理</dt>
-                <dd><a href="__MODULE__/Articlestype/lstType">文章类型</a></dd>
-                <dd><a href="__MODULE__/Articles/lst">文章列表</a></dd>
+                <dd><a href="__MODULE__/Articlestype/lstType" <if condition="$action eq 'lstType'">class="active"</if>>文章类型</a></dd>
+                <dd><a href="__MODULE__/Articles/lst" <if condition="$action eq 'lst'">class="active"</if>>文章列表</a></dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>广告设置</dt>
+                <dd><a href="__MODULE__/Ad/ad_list" <if condition="$action eq 'ad_list'">class="active"</if>>广告管理</a></dd>
+                <dd><a href="__MODULE__/Ad/ad_position_list" <if condition="$action eq 'ad_position_list'">class="active"</if>">广告位管理</a></dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>其他</dt>
-                <dd><a href="__MODULE__/Link/linkList">友情链接</a></dd>
-                <dd><a href="__MODULE__/Contact/lst">联系厂家</a></dd>
-                <dd><a href="__MODULE__/Articles/lst">留言信息</a></dd>
+                <dd><a href="__MODULE__/Link/linkList" <if condition="$action eq 'linkList'">class="active"</if>>友情链接</a></dd>
+                <dd><a href="__MODULE__/Contact/lst" <if condition="$action eq 'lst'">class="active"</if>>联系厂家</a></dd>
+                <dd><a href="__MODULE__/Articles/lst" <if condition="$action eq 'lst'">class="active"</if>>留言信息</a></dd>
             </dl>
         </li>
         <li>

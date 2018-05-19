@@ -22,10 +22,10 @@
                 <a id="msg_notify" class="msg_notify" href="http://www.sucaihuo.com/Member/message.html"></a>
             </li>
             <li class="box_color nav_home">
-                <span><a href="/sz/index.php/Home/Member/member_info">个人中心</a></span><b class="icon"></b>
+                <span><a href="/szsanyi/index.php/Home/Member/member_info">个人中心</a></span><b class="icon"></b>
                 <ul>
-                    <li><a href="/sz/index.php/Home/Member/member_info"><span>我的主页</span></a></li>
-                    <li><a href="/sz/index.php/Home/Userinfo/user_info/user_id/<?php echo ($_SESSION['user_id']); ?>"><span>个人设置</span></a></li>
+                    <li><a href="/szsanyi/index.php/Home/Member/member_info"><span>我的主页</span></a></li>
+                    <li><a href="/szsanyi/index.php/Home/Userinfo/user_info/user_id/<?php echo ($_SESSION['user_id']); ?>"><span>个人设置</span></a></li>
                     <li><a href="http://www.sucaihuo.com/Member/downloads.html"><span>下载记录</span></a></li>
                     <li><a href="http://www.sucaihuo.com/Member/collects.html"><span>我的收藏</span></a></li>
                     <li><a href="http://www.sucaihuo.com/Member/sign.html"><span>我的签到</span></a></li>
@@ -68,12 +68,12 @@
                 <li class="tg-line icon"></li>
                 <li class="no-hover nologin">
                 <span>
-                    <a href="/sz/index.php/Home/Account/register">注册</a>
+                    <a href="/szsanyi/index.php/Home/Account/register">注册</a>
                 </span>
                 </li>
                 <li class="box_color nav_home" id="nav_login">
                         <span>
-                            <a href="/sz/index.php/Home/Account/login" class="sn_login">登录</a>
+                            <a href="/szsanyi/index.php/Home/Account/login" class="sn_login">登录</a>
                         </span>
                     <b class="icon"></b>
                     <ul>
@@ -92,14 +92,14 @@
                 <?php else: ?>
                 <li class="no-hover  haslogin">
                 <span>
-                    <a href="/sz/index.php/Home/Member/member_info/user_id/<?php echo ($_SESSION['user_id']); ?>">
+                    <a href="/szsanyi/index.php/Home/Member/member_info/user_id/<?php echo ($_SESSION['user_id']); ?>">
                         <font  id="head_username" class="sn_login username"><?php echo ($_SESSION['username']); ?></font>
                         <!--<?php echo ($_SESSION['username']); ?>-->
                         <!--<?php echo ($_SESSION['username']['']); ?>-->
                     </a>
                 </span>
                 <li class="no-hover  haslogin">
-                    <span><a href="/sz/index.php/Home/Account/loginOut">退出</a></span>
+                    <span><a href="/szsanyi/index.php/Home/Account/loginOut">退出</a></span>
                 </li><?php endif; ?>
         </ul>
     </div>
@@ -143,8 +143,8 @@
 </div>
 <div id="nav" class="nav">
     <div class="nav_main clearfix">
-        <a href="/sz/index.php" class="menu <?php if( $curr): ?>current<?php endif; ?>">首 页</a>
-        <?php if(is_array($cateRes)): $i = 0; $__LIST__ = $cateRes;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><a href="/sz/index.php/Home/<?php if( $vo['cate_type'] == 0): ?>Lst<?php elseif($vo['cate_type'] == 1): ?>Page<?php else: ?>Topic<?php endif; ?>/index/cate_id/<?php echo ($vo['cate_id']); ?>" class="menu <?php if($current == $vo['cate_id'] || $topId == $vo['cate_id']): ?>current<?php endif; ?>"><?php echo ($vo['cate_name']); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
+        <a href="/szsanyi/index.php" class="menu <?php if( $curr): ?>current<?php endif; ?>">首 页</a>
+        <?php if(is_array($cateRes)): $i = 0; $__LIST__ = $cateRes;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><a href="/szsanyi/index.php/Home/<?php if( $vo['cate_type'] == 0): ?>Lst<?php elseif($vo['cate_type'] == 1): ?>Page<?php else: ?>Topic<?php endif; ?>/index/cate_id/<?php echo ($vo['cate_id']); ?>" class="menu <?php if($current == $vo['cate_id'] || $topId == $vo['cate_id']): ?>current<?php endif; ?>"><?php echo ($vo['cate_name']); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
         <span class="icon_hot"></span>
     </div>
 </div>
@@ -323,8 +323,8 @@
         <div class="list_main clearfix">
            <?php foreach($article as $k=> $art) :?>
                 <div class="per" <?php if(($k+1)%4 == 0){echo 'style="margin-right:0"';} ;?>>
-                    <a target="_blank" href="/sz/index.php/Home/Article/article/cate_id/<?php echo ($cate_id); ?>/article_id/<?php echo ($art['article_id']); ?>" class="img_link">
-                        <img style="display: inline;"  src="/sz/<?php echo $art['article_pic'];?>" original="" alt="<?php echo $art['article_title'];?>" class="lazy">
+                    <a target="_blank" href="/szsanyi/index.php/Home/Article/article/cate_id/<?php echo ($cate_id); ?>/article_id/<?php echo ($art['article_id']); ?>" class="img_link">
+                        <img style="display: inline;"  src="/szsanyi/<?php echo $art['article_pic'];?>" original="" alt="<?php echo $art['article_title'];?>" class="lazy">
                     </a>
                     <div class="foot">
                         <p class="title">

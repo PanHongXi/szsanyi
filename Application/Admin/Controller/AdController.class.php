@@ -22,10 +22,11 @@ class AdController extends CommonController
         $Page->setConfig('next', '下一页');
         $show = $Page->show();
         $this->assign('page',$show);
-        $list = $ad->join('sc_ad_position p on a.position_id = p.position_id')->field('a.*,p.*')->select();
+        $list = $ad->join('sc_ad_position p on a.position_id = p.position_id')->field('a.*,p.*')->order('p.position_id desc')->select();
         $this->assign('list',$list);
         $this->display();
     }
+
     public function ad_del(){
         $ad = D('ad');
         $data = $ad->where('id = '.$_GET['id'])->delete();
@@ -118,6 +119,7 @@ class AdController extends CommonController
         $this->assign('position', $typeattr);//属性类型
         $this->display();
     }
+
     public function ad_position_list(){
         $ad = D('ad_position');
         $position_name = I('get.position_name');
@@ -132,6 +134,7 @@ class AdController extends CommonController
         $this->assign('list',$data);
         $this->display();
     }
+
     public function ad_position_add(){
         if($_GET){
             //数据修改

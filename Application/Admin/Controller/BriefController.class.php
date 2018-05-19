@@ -6,7 +6,7 @@ use think\Controller;
 
 class BriefController extends CommonController
 {
-    public function lst()
+    public function lsts()
     {
         $brief = D('Brief');
 

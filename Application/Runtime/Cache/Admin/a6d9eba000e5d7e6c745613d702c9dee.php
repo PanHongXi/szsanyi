@@ -91,6 +91,13 @@
         </li>
         <li>
             <dl>
+                <dt>广告设置</dt>
+                <dd><a href="/szsanyi/index.php/Admin/Ad/ad_list">广告管理</a></dd>
+                <dd><a href="/szsanyi/index.php/Admin/Ad/ad_position_list">广告位管理</a></dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
                 <dt>其他</dt>
                 <dd><a href="/szsanyi/index.php/Admin/Link/linkList">友情链接</a></dd>
                 <dd><a href="/szsanyi/index.php/Admin/Contact/lst">联系厂家</a></dd>
@@ -151,41 +158,73 @@
 <section class="rt_wrap content mCustomScrollbar">
     <div class="rt_content">
         <div class="page_title">
-            <h2 class="fl">系统列表</h2>
-            <a href="/szsanyi/index.php/Admin/Contact/add" class="fr top_rt_btn add_icon">添加系统配置</a>
+            <h2 class="fl">添加广告</h2>
+            <a class="fr top_rt_btn" href="/szsanyi/index.php/Admin/Ad/ad_list">返回广告列表</a>
         </div>
-        <table class="table">
-            <tr>
-                <th style="width: 80px">Id</th>
-                <th style="width: 120px">联系人</th>
-                <th style="width: 120px">手机</th>
-                <th style="width: 120px">微信号</th>
-                <th style="width: 160px">传真</th>
-                <th style="width: 120px">邮箱</th>
-                <th style="width: 180px">销售QQ</th>
-                <th>地址公司</th>
-                <th>工厂地址</th>
-                <th style="width: 90px">操作</th>
-            </tr>
-            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><tr>
-                    <td><?php echo ($list['id']); ?></td>
-                    <td><?php echo ($list['people']); ?></td>
-                    <td><?php echo ($list['phone']); ?></td>
-                    <td><?php echo ($list['wechat']); ?></td>
-                    <td><?php echo ($list['fax']); ?></td>
-                    <td><?php echo ($list['qq']); ?></td>
-                    <td><?php echo ($list['email']); ?></td>
-                    <td><?php echo ($list['address']); ?></td>
-                    <td><?php echo ($list['faddress']); ?></td>
-                    <td class="center">
-                        <a href="/szsanyi/index.php/Admin/Contact/edit/id/<?php echo ($list['id']); ?>" title="编辑"
-                           class="link_icon">&#101;</a>
-                        <a href="/szsanyi/index.php/Admin/Contact/del/id/<?php echo ($list['id']); ?>"
-                           onclick="return confirm('您确定要删除吗?');" title="删除" class="link_icon">&#100;</a>
-                    </td>
-                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-        </table>
+        <form method="post" action="" enctype="multipart/form-data">
+            <section>
+                <ul class="ulColumn2">
+                    <li>
+                        <span class="item_name" style="width:120px;">广告名称：</span>
+                        <input type="text" name="ad_name" class="textbox textbox_295"  placeholder="自定义广告名称" value="<?php echo ($edit["ad_name"]); ?>"/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">广告类型：</span>
+                        <select class="select" name="type_id">
+                            <option value="">选择类型</option>
+                            <option value="1">图片</option>
+                            <option value="2">flash</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">广告链接：</span>
+                        <input type="text" name="ad_url" class="textbox textbox_295"
+                               placeholder="" value="<?php echo ($edit["ad_url"]); ?>"/>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">广告位置：</span>
+                        <select class="select" name="position_id">
+                            <option value="">请选择位置</option>
+                            <?php if(is_array($position)): $i = 0; $__LIST__ = $position;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo['position_id']); ?>"><?php echo ($vo['position_name']); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                        </select>
+                    </li>
+                    <!--<li>-->
+                        <!--<span class="item_name" style="width:120px;">文章推荐：</span>-->
+                        <!--<label class="single_selection"><input type="radio" value="0" checked="checked" name="article_reco"/>不推荐</label>-->
+                        <!--<label class="single_selection"><input type="radio" value="1" name="article_reco"/>推荐</label>-->
+                    <!--</li>-->
+                    <li>
+                        <span class="item_name" style="width:120px;">上传图片：</span>
+                        <label class="uploadImg">
+                            <input type="file" name="ad_img" value="<?php echo ($edit["ad_img"]); ?>"/>
+                            <span>上传图片</span>
+                        </label>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">广告详情：</span>
+
+                        <div id="btns" style="margin-left:120px;margin-top:8px;">
+                            <textarea id="content" name="ad_desc"><?php echo ($edit["ad_desc"]); ?></textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;"></span>
+                        <input type="submit" value="确认提交" class="link_btn"/>
+                    </li>
+                </ul>
+            </section>
+        </form>
     </div>
 </section>
+<script type="text/javascript" charset="utf-8" src="/szsanyi/Public/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/szsanyi/Public/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/szsanyi/Public/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="/sucai/Public/Admin/Js/ueditor.config.js"></script>
+<script src="/sucai/Public/Admin/Js/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('content', {initialFrameWidth: 1500, initialFrameHeight: 400,});
+</script>
 </body>
 </html>
